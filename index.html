@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Agropecuária Brasil em São Carlos: Rações, Pet Shop, Medicamentos Veterinários e Produtos Rurais. Entrega rápida e o melhor atendimento desde 1997." />
+    <meta name="theme-color" content="#24902C" />
+    <link rel="canonical" href="https://agropecuariabrasil.com.br/" />
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://agropecuariabrasil.com.br/" />
+    <meta property="og:title" content="Agropecuária Brasil | Cuidar bem é da nossa natureza" />
+    <meta property="og:description" content="Encontre tudo para seu pet e sua produção rural. Rações, medicamentos e acessórios com entrega rápida em São Carlos." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=1200&auto=format&fit=crop" />
+
+    <title>Agropecuária Brasil | Cuidar bem é da nossa natureza</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (Mantido via CDN para simplificar setup local) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#24902C',
+                            blue: '#264788',
+                            yellow: '#E5C808',
+                        }
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- CSS FIX PARA GTM: Garante que cliques em botões sejam capturados no elemento pai -->
+    <style>
+        /* "Nuclear Option": Ignora cliques em QUALQUER filho de um elemento com esta classe. 
+           Isso força o event.target a ser o botão pai, garantindo que o Click Text não seja undefined. */
+        .click-fix > * {
+            pointer-events: none !important;
+        }
+    </style>
+
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.10.1",
+    "@sanity/client": "https://esm.sh/@sanity/client@^7.13.2",
+    "vite": "https://esm.sh/vite@^7.2.7",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "sanity/": "https://esm.sh/sanity@^4.21.1/",
+    "sanity": "https://esm.sh/sanity@^4.21.1"
+  }
+}
+</script>
+</head>
+<body class="bg-gray-50 text-gray-900 selection:bg-[#E5C808] selection:text-[#264788]">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
