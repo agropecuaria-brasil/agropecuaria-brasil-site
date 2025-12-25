@@ -117,13 +117,16 @@ const defaultData: ContentContextType = {
     footerDescription: 'Desde 1997 sendo referência em produtos de petshop e agropecuários em São Carlos.',
     whatsappGlobal: '551600000000',
     whatsappGroupUrl: 'https://chat.whatsapp.com/', 
-    googleReviewsUrl: 'https://www.google.com/maps', // Fallback
+    // Link externo para "Ver avaliações" (Aqui usamos o link normal que você enviou)
+    googleReviewsUrl: 'https://www.google.com/maps?ll=-22.023819,-47.880936&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Maj.+Manoel+Ant%C3%B4nio+de+Mattos,+567+-+Jardim+Ricetti+S%C3%A3o+Carlos+-+SP+13560-831',
     instagramUrl: 'https://www.instagram.com/agropecuaria.brasilsc/',
     instagramPosts: [],
     facebookUrl: 'https://www.facebook.com/agropecuariabrasilsaocarlos',
     gtmId: 'GTM-XXXXXX',
     contactInfo: {
       address: 'Rua Major Manoel Antonio de Mattos, 567\nJardim Ricetti, São Carlos - SP\nCEP: 13560-831',
+      // Link DE INCORPORAÇÃO para o iframe (Este precisa ser o formato especial /embed?pb=...)
+      // Mantivemos o endereço correto: R. Maj. Manoel Antônio de Mattos, 567
       googleMapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3699.428613146193!2d-47.89970592395133!3d-22.0198661798877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b87728f5223c6b%3A0x867343163333333!2sR.%20Maj.%20Manoel%20Ant%C3%B4nio%20de%20Matos%2C%20567%20-%20Jardim%20Ricetti%2C%20S%C3%A3o%20Carlos%20-%20SP%2C%2013560-831!5e0!3m2!1spt-BR!2sbr!4v1709923456789!5m2!1spt-BR!2sbr',
       phonePrimary: '(16) 3372-4448',
       phoneSecondary: '(16) 3371-4849',
