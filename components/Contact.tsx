@@ -24,7 +24,7 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
                   ela apareça branca no rodapé.
                */}
                <img 
-                 src={settings.logoFooter.url} 
+                 src={settings.logoFooter.url || "https://placehold.co/200x80/264788/FFFFFF/png?text=Agro+Brasil"} 
                  alt="Agropecuária Brasil" 
                  className="h-16 w-auto object-contain brightness-0 invert"
                />
@@ -102,6 +102,8 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
             <p className="text-center md:text-left">
               © 2026 Agropecuária Brasil LTDA - CNPJ: 06.881.706-0001-96 | Todos os direitos reservados.
             </p>
+            <span className="hidden md:block text-gray-600">|</span>
+            <span className="text-[#E5C808] font-bold">v2.1 (Atualizado)</span>
             <span className="hidden md:block text-gray-600">|</span>
             <Link 
               to="/politica-privacidade" 

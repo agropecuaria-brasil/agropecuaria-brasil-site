@@ -104,11 +104,14 @@ const defaultTestimonials: Testimonial[] = [
   }
 ];
 
+// Placeholder logos (caso não tenha no Sanity)
+const PLACEHOLDER_LOGO = "https://placehold.co/200x80/264788/FFFFFF/png?text=Agro+Brasil";
+
 const defaultData: ContentContextType = {
   isLoading: true,
   settings: {
-    logoHeader: { url: '', width: 160, height: 60 },
-    logoFooter: { url: '', width: 200, height: 80 },
+    logoHeader: { url: PLACEHOLDER_LOGO, width: 160, height: 60 },
+    logoFooter: { url: PLACEHOLDER_LOGO, width: 200, height: 80 },
     heroSlides: defaultHeroSlides, // Inicia com o padrão
     aboutImage: "https://picsum.photos/seed/farmer/800/1000",
     footerDescription: 'Desde 1997 sendo referência em produtos de petshop e agropecuários em São Carlos.',
@@ -206,6 +209,9 @@ export const useContent = () => {
                 ? data.settings.heroSlides 
                 : defaultHeroSlides, // Usa exemplo se vazio
               
+              logoHeader: data.settings.logoHeader?.url ? data.settings.logoHeader : { url: PLACEHOLDER_LOGO },
+              logoFooter: data.settings.logoFooter?.url ? data.settings.logoFooter : { url: PLACEHOLDER_LOGO },
+
               aboutImage: data.settings.aboutImage || prev.settings.aboutImage,
               contactInfo: { ...prev.settings.contactInfo, ...(data.settings.contactInfo || {}) }
             } : prev.settings,

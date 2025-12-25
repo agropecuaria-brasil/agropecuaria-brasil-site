@@ -1,13 +1,14 @@
-# Dependencias
+# Dependencias (NUNCA ENVIAR ISSO)
 node_modules/
 admin/node_modules/
 
-# Builds
+# Builds e Distribuicao
 dist/
 build/
 admin/dist/
+.sanity/
 
-# Variaveis de ambiente
+# Variaveis de ambiente (Seguranca)
 .env
 .env.local
 
@@ -20,3 +21,4 @@ yarn-error.log*
 .vscode/
 .idea/
 *.DS_Store
+Thumbs.db
