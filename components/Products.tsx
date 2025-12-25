@@ -6,25 +6,25 @@ const categories = [
   {
     title: "Pets (Cães e Gatos)",
     description: "Rações premium, brinquedos, camas e acessórios para o seu melhor amigo.",
-    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=600&auto=format&fit=crop", // Imagem anterior (Cães brincando)
+    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=600&auto=format&fit=crop&fm=webp",
     icon: Dog
   },
   {
     title: "Animais de Produção",
     description: "Nutrição e equipamentos para bovinos, equinos, aves e suínos.",
-    image: "https://images.unsplash.com/photo-1596733430284-f7437764b1a9?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1596733430284-f7437764b1a9?q=80&w=600&auto=format&fit=crop&fm=webp",
     icon: Tractor
   },
   {
     title: "Plantação & Jardinagem",
     description: "Ferramentas, sementes, adubos e tratamento para o seu cultivo e lazer.",
-    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=600&auto=format&fit=crop", // Imagem anterior (Jardinagem/Plantas)
+    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=600&auto=format&fit=crop&fm=webp",
     icon: Sprout
   },
   {
     title: "Farmácia Veterinária",
     description: "Medicamentos e vacinas com a orientação que você precisa e confia.",
-    image: "https://images.unsplash.com/photo-1599443015574-be5fe8a05783?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1599443015574-be5fe8a05783?q=80&w=600&auto=format&fit=crop&fm=webp",
     icon: Syringe
   }
 ];
@@ -75,7 +75,7 @@ const Products: React.FC = () => {
                       price: 0,
                       image: cat.image
                     })}
-                    className="gtm-btn-product-consult text-[#24902C] font-semibold text-sm hover:underline flex items-center gap-1 group/btn click-fix"
+                    className="gtm-btn-product-consult text-[#24902C] font-semibold text-sm hover:underline flex items-center gap-1 group/btn click-fix min-h-[44px] w-full"
                     data-gtm-label={`Consultar ${cat.title}`}
                   >
                     <span className="pointer-events-none">Consultar disponibilidade &rarr;</span>

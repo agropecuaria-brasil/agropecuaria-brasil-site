@@ -8,13 +8,13 @@ import { sanityClient } from '../lib/sanity';
 
 const defaultHeroSlides: HeroSlideData[] = [
   {
-    image: "https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?q=80&w=1920&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?q=80&w=1920&auto=format&fit=crop&fm=webp",
     theme: "blue",
     title: "Cuidar bem é da <br/>nossa natureza.",
     description: "Mais do que produtos agropecuários, entregamos cuidado, confiança e proximidade."
   },
   {
-    image: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1920&q=80",
+    image: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1920&q=80&fm=webp",
     theme: "green",
     title: "Tudo para o seu <br/>Agronegócio",
     description: "Produtos de alta qualidade para garantir a produtividade do seu campo."
@@ -33,7 +33,7 @@ const defaultProducts: ProductData[] = [
     category: "Cães", 
     price: 129.90, 
     oldPrice: 149.90, 
-    image: "https://images.unsplash.com/photo-1589924691195-41432c84c161?q=80&w=400&auto=format&fit=crop", 
+    image: "https://images.unsplash.com/photo-1589924691195-41432c84c161?q=80&w=400&auto=format&fit=crop&fm=webp", 
     badge: "-13%" 
   },
   { 
@@ -42,7 +42,7 @@ const defaultProducts: ProductData[] = [
     category: "Medicamentos", 
     price: 185.90, 
     oldPrice: 210.00, 
-    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop", 
+    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop&fm=webp", 
     badge: "Oferta" 
   },
   { 
@@ -51,7 +51,7 @@ const defaultProducts: ProductData[] = [
     category: "Gatos", 
     price: 14.99, 
     oldPrice: 18.90, 
-    image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=400&auto=format&fit=crop", 
+    image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=400&auto=format&fit=crop&fm=webp", 
     badge: null 
   },
   { 
@@ -60,7 +60,7 @@ const defaultProducts: ProductData[] = [
     category: "Jardinagem", 
     price: 89.90, 
     oldPrice: 120.00, 
-    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=400&auto=format&fit=crop", 
+    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=400&auto=format&fit=crop&fm=webp", 
     badge: "Kit" 
   },
   { 
@@ -69,7 +69,7 @@ const defaultProducts: ProductData[] = [
     category: "Gatos", 
     price: 2.79, 
     oldPrice: 3.50, 
-    image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?q=80&w=400&auto=format&fit=crop", 
+    image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?q=80&w=400&auto=format&fit=crop&fm=webp", 
     badge: null 
   }
 ];
@@ -82,7 +82,7 @@ const defaultTestimonials: Testimonial[] = [
     rating: 5,
     date: "há 2 dias",
     source: "google",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop"
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop&fm=webp"
   },
   {
     id: 2,
@@ -91,7 +91,7 @@ const defaultTestimonials: Testimonial[] = [
     rating: 5,
     date: "há 1 semana",
     source: "google",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop"
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop&fm=webp"
   },
   {
     id: 3,
@@ -100,7 +100,7 @@ const defaultTestimonials: Testimonial[] = [
     rating: 5,
     date: "há 2 semanas",
     source: "facebook",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop"
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop&fm=webp"
   }
 ];
 
@@ -113,7 +113,7 @@ const defaultData: ContentContextType = {
     logoHeader: { url: PLACEHOLDER_LOGO, width: 160, height: 60 },
     logoFooter: { url: PLACEHOLDER_LOGO, width: 200, height: 80 },
     heroSlides: defaultHeroSlides, // Inicia com o padrão
-    aboutImage: "https://picsum.photos/seed/farmer/800/1000",
+    aboutImage: "https://picsum.photos/seed/farmer/800/1000?fm=webp",
     footerDescription: 'Desde 1997 sendo referência em produtos de petshop e agropecuários em São Carlos.',
     whatsappGlobal: '551600000000',
     whatsappGroupUrl: 'https://chat.whatsapp.com/', 
@@ -148,16 +148,17 @@ export const useContent = () => {
   useEffect(() => {
     const fetchSanityData = async () => {
       try {
+        // Query otimizada para WebP: Adiciona ?auto=format&fm=webp&q=80 nas URLs de imagem
         const query = `{
           "settings": *[_type == "siteSettings"][0]{
             ...,
-            logoHeader { "url": asset->url },
-            logoFooter { "url": asset->url },
-            "aboutImage": aboutImage.asset->url,
+            logoHeader { "url": asset->url + "?auto=format&fm=webp&q=80" },
+            logoFooter { "url": asset->url + "?auto=format&fm=webp&q=80" },
+            "aboutImage": aboutImage.asset->url + "?auto=format&fm=webp&q=80",
             heroSlides[]{
               ...,
-              "image": image.asset->url,
-              "mobileImage": mobileImage.asset->url
+              "image": image.asset->url + "?auto=format&fm=webp&q=80",
+              "mobileImage": mobileImage.asset->url + "?auto=format&fm=webp&q=80"
             },
             announcements[]{
               text,
@@ -166,21 +167,21 @@ export const useContent = () => {
             instagramPosts[]{
               link,
               caption,
-              "image": image.asset->url
+              "image": image.asset->url + "?auto=format&fm=webp&q=80"
             }
           },
           "products": *[_type == "product" && active == true] | order(_createdAt desc)[0..15]{
             ...,
             "id": _id,
-            "image": image.asset->url
+            "image": image.asset->url + "?auto=format&fm=webp&q=80"
           },
           "promoBanners": *[_type == "promoBanner"]{
              ...,
-             "bgImage": bgImage.asset->url
+             "bgImage": bgImage.asset->url + "?auto=format&fm=webp&q=80"
           },
           "brands": *[_type == "brand"] | order(name asc){
              name,
-             "logo": logo.asset->url
+             "logo": logo.asset->url + "?auto=format&fm=webp&q=80"
           },
           "testimonials": *[_type == "testimonial"] | order(_createdAt desc){
              "id": _id,
@@ -189,7 +190,7 @@ export const useContent = () => {
              rating,
              "date": dateText,
              source,
-             "avatar": avatar.asset->url
+             "avatar": avatar.asset->url + "?auto=format&fm=webp&q=80"
           }
         }`;
         
