@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useWhatsApp } from '../contexts/WhatsAppContext';
@@ -43,7 +42,11 @@ const OffersCarousel: React.FC = () => {
 
         <div className="relative group">
           {products.length > itemsPerPage && (
-            <button onClick={prevSlide} className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#24902C] shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+            <button 
+              onClick={prevSlide} 
+              className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#24902C] shadow-lg opacity-0 group-hover:opacity-100 transition-opacity min-w-[48px] min-h-[48px] flex items-center justify-center"
+              aria-label="Oferta Anterior"
+            >
                 <ChevronLeft />
             </button>
           )}
@@ -63,7 +66,7 @@ const OffersCarousel: React.FC = () => {
                         <span className="block text-2xl font-extrabold text-[#24902C] mb-4">R$ {product.price.toFixed(2).replace('.', ',')}</span>
                         <button 
                           onClick={() => openModal(product)} 
-                          className="gtm-btn-offer-buy w-full py-3 border-2 border-gray-100 rounded-xl font-bold text-[#2C3E50] hover:bg-[#24902C] hover:text-white transition-all flex items-center justify-center click-fix"
+                          className="gtm-btn-offer-buy w-full py-4 border-2 border-gray-100 rounded-xl font-bold text-[#2C3E50] hover:bg-[#24902C] hover:text-white transition-all flex items-center justify-center click-fix min-h-[48px]"
                           data-gtm-label="Compre Agora"
                         >
                           <span className="flex items-center gap-2 pointer-events-none">
@@ -80,7 +83,11 @@ const OffersCarousel: React.FC = () => {
           </div>
 
           {products.length > itemsPerPage && (
-             <button onClick={nextSlide} className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#24902C] shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+             <button 
+                onClick={nextSlide} 
+                className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#24902C] shadow-lg opacity-0 group-hover:opacity-100 transition-opacity min-w-[48px] min-h-[48px] flex items-center justify-center"
+                aria-label="Próxima Oferta"
+             >
                 <ChevronRight />
              </button>
           )}

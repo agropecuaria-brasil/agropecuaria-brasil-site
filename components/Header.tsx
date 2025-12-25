@@ -91,7 +91,7 @@ const Header: React.FC = () => {
             
             {/* Logo */}
             <div className="flex-shrink-0 h-full py-2 flex items-center">
-               <Link to="/" className="h-full flex items-center">
+               <Link to="/" className="h-full flex items-center" aria-label="Ir para página inicial">
                  <img 
                    src={settings.logoHeader.url} 
                    alt="Logo Agropecuária Brasil" 
@@ -140,7 +140,7 @@ const Header: React.FC = () => {
 
           <div className="md:hidden flex justify-between items-center h-full">
             <div className="flex items-center h-full py-3">
-              <Link to="/" className="h-full flex items-center">
+              <Link to="/" className="h-full flex items-center" aria-label="Ir para página inicial">
                 <img 
                    src={settings.logoHeader.url} 
                    alt="Logo" 
@@ -150,7 +150,12 @@ const Header: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-4">
-              <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-md text-gray-700 hover:bg-gray-100">
+              <button 
+                onClick={() => setIsOpen(!isOpen)} 
+                className="p-3 rounded-md text-gray-700 hover:bg-gray-100 min-w-[48px] min-h-[48px] flex items-center justify-center"
+                aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
+                aria-expanded={isOpen}
+              >
                 {isOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
             </div>
@@ -167,7 +172,7 @@ const Header: React.FC = () => {
                     key={item.label}
                     to={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="block text-lg font-medium text-gray-700 hover:text-[#24902C] hover:bg-gray-50 px-4 py-3 rounded-lg"
+                    className="block text-lg font-medium text-gray-700 hover:text-[#24902C] hover:bg-gray-50 px-4 py-4 rounded-lg min-h-[48px]"
                   >
                     {item.label}
                   </Link>
@@ -176,7 +181,7 @@ const Header: React.FC = () => {
                     key={item.label}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="block text-lg font-medium text-gray-700 hover:text-[#24902C] hover:bg-gray-50 px-4 py-3 rounded-lg"
+                    className="block text-lg font-medium text-gray-700 hover:text-[#24902C] hover:bg-gray-50 px-4 py-4 rounded-lg min-h-[48px]"
                   >
                     {item.label}
                   </a>
@@ -184,7 +189,7 @@ const Header: React.FC = () => {
             ))}
             <button
               onClick={() => { setIsOpen(false); openModal(); }}
-              className="gtm-btn-header-budget block w-full text-center bg-[#24902C] text-white font-bold py-3 rounded-lg mt-4 flex items-center justify-center shadow-sm click-fix"
+              className="gtm-btn-header-budget block w-full text-center bg-[#24902C] text-white font-bold py-3 rounded-lg mt-4 flex items-center justify-center shadow-sm click-fix min-h-[48px]"
             >
               <span className="flex items-center justify-center gap-2 pointer-events-none">
                 <WhatsAppIcon size={20} />

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
@@ -48,7 +47,8 @@ const Testimonials: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-12">
-          <h2 className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-3">
+          {/* Contraste ajustado: text-gray-500 */}
+          <h2 className="text-gray-600 text-sm font-bold uppercase tracking-widest mb-3">
             Depoimentos de Clientes
           </h2>
           <h3 className="text-3xl md:text-4xl font-extrabold text-[#264788] font-['Montserrat']">
@@ -89,7 +89,7 @@ const Testimonials: React.FC = () => {
                       {[...Array(review.rating || 5)].map((_, i) => (
                         <Star key={i} size={18} fill="#E5C808" className="text-[#E5C808]" />
                       ))}
-                      <span className="ml-2 text-sm font-semibold text-gray-400">
+                      <span className="ml-2 text-sm font-semibold text-gray-500">
                         {review.rating ? review.rating.toFixed(1) : "5.0"}
                       </span>
                     </div>
@@ -109,17 +109,19 @@ const Testimonials: React.FC = () => {
                       
                       <div>
                           <h4 className="font-bold text-gray-900 leading-none">{review.name}</h4>
-                          <span className="text-xs text-gray-400 capitalize">
+                          {/* Contraste melhorado: text-gray-400 para text-gray-500 */}
+                          <span className="text-xs text-gray-500 capitalize">
                              {review.source === 'google' ? 'Via Google' : review.source === 'facebook' ? 'Via Facebook' : 'Cliente Verificado'}
                           </span>
                       </div>
                     </div>
 
-                    <p className="text-gray-600 leading-relaxed text-sm italic flex-grow">
+                    {/* Contraste melhorado */}
+                    <p className="text-gray-700 leading-relaxed text-sm italic flex-grow">
                       "{review.text}"
                     </p>
 
-                    <div className="mt-6 pt-4 border-t border-gray-200 text-xs text-gray-400 text-right">
+                    <div className="mt-6 pt-4 border-t border-gray-200 text-xs text-gray-500 text-right">
                        Avaliado {review.date}
                     </div>
                   </div>
@@ -144,10 +146,10 @@ const Testimonials: React.FC = () => {
              <button
                 key={idx}
                 onClick={() => setStartIndex(idx)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  idx === startIndex ? 'bg-[#24902C] w-6' : 'bg-gray-200 hover:bg-[#E5C808]'
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  idx === startIndex ? 'bg-[#24902C] w-6' : 'bg-gray-300 hover:bg-[#E5C808]'
                 }`}
-                aria-label={`Ir para slide ${idx + 1}`}
+                aria-label={`Ir para slide de depoimento ${idx + 1}`}
              />
           ))}
         </div>
@@ -157,7 +159,7 @@ const Testimonials: React.FC = () => {
               href={settings.googleReviewsUrl || "https://www.google.com/maps"} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#264788] font-semibold hover:text-[#24902C] transition-colors"
+              className="inline-flex items-center gap-2 text-[#264788] font-semibold hover:text-[#24902C] transition-colors min-h-[48px]"
             >
                 {/* GTM Fix */}
                 <span className="pointer-events-none flex items-center gap-2">

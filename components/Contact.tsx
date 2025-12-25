@@ -18,10 +18,6 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           <div>
             <div className="mb-6 flex items-center">
-               {/* 
-                  Exibe o logo original sem filtros de cor, conforme solicitado.
-                  A imagem deve ser legível sobre o fundo azul (#264788).
-               */}
                <img 
                  src={settings.logoFooter.url || "https://placehold.co/200x80/264788/FFFFFF/png?text=Agro+Brasil"} 
                  alt="Agropecuária Brasil" 
@@ -29,7 +25,8 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
                />
             </div>
             
-            <p className="text-gray-300 text-sm leading-relaxed mb-6 whitespace-pre-line">
+            {/* Contraste melhorado: text-gray-300 para text-gray-200 em fundo escuro */}
+            <p className="text-gray-200 text-sm leading-relaxed mb-6 whitespace-pre-line">
               {settings.footerDescription}
             </p>
             <div className="flex space-x-4">
@@ -37,7 +34,8 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
                 href={settings.instagramUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white/10 p-2 rounded-full hover:bg-[#E5C808] hover:text-[#264788] transition-colors"
+                className="bg-white/10 p-3 rounded-full hover:bg-[#E5C808] hover:text-[#264788] transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
+                aria-label="Siga-nos no Instagram"
               >
                 <Instagram size={20} />
               </a>
@@ -45,7 +43,8 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
                 href={settings.facebookUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white/10 p-2 rounded-full hover:bg-[#E5C808] hover:text-[#264788] transition-colors"
+                className="bg-white/10 p-3 rounded-full hover:bg-[#E5C808] hover:text-[#264788] transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
+                aria-label="Curta nossa página no Facebook"
               >
                 <Facebook size={20} />
               </a>
@@ -57,20 +56,20 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="text-[#E5C808] mt-1 shrink-0" size={18} />
-                <span className="text-gray-300 text-sm whitespace-pre-line">
+                <span className="text-gray-200 text-sm whitespace-pre-line">
                   {contactInfo.address}
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="text-[#E5C808] mt-1 shrink-0" size={18} />
-                <div className="text-gray-300 text-sm flex flex-col">
+                <div className="text-gray-200 text-sm flex flex-col">
                   <span>{contactInfo.phonePrimary}</span>
                   {contactInfo.phoneSecondary && <span>{contactInfo.phoneSecondary}</span>}
                 </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="text-[#E5C808] shrink-0" size={18} />
-                <span className="text-gray-300 text-sm">{contactInfo.email}</span>
+                <span className="text-gray-200 text-sm">{contactInfo.email}</span>
               </li>
             </ul>
           </div>
@@ -80,14 +79,14 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Clock className="text-[#E5C808] mt-1 shrink-0" size={18} />
-                <div className="text-gray-300 text-sm">
+                <div className="text-gray-200 text-sm">
                   <p className="font-semibold text-white">Segunda a Sábado</p>
                   <p>{contactInfo.openingHoursWeek}</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="text-[#E5C808] mt-1 shrink-0" size={18} />
-                <div className="text-gray-300 text-sm">
+                <div className="text-gray-200 text-sm">
                   <p className="font-semibold text-white">Domingo</p>
                   <p>{contactInfo.openingHoursWeekend}</p>
                 </div>
@@ -106,14 +105,14 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
             <span className="hidden md:block text-gray-600">|</span>
             <Link 
               to="/politica-privacidade" 
-              className="hover:text-[#E5C808] transition-colors underline decoration-dotted underline-offset-2"
+              className="hover:text-[#E5C808] transition-colors underline decoration-dotted underline-offset-2 min-h-[44px] md:min-h-0 flex items-center"
             >
               Política de Privacidade
             </Link>
             <span className="hidden md:block text-gray-600">|</span>
             <button 
               onClick={onOpenCookieSettings} 
-              className="hover:text-[#E5C808] transition-colors underline decoration-dotted underline-offset-2"
+              className="hover:text-[#E5C808] transition-colors underline decoration-dotted underline-offset-2 min-h-[44px] md:min-h-0"
             >
               Preferências de Cookies
             </button>
