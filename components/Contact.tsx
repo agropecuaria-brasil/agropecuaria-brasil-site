@@ -19,14 +19,13 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
           <div>
             <div className="mb-6 flex items-center">
                {/* 
-                  Aplica 'brightness-0' (preto total) e 'invert' (inverte para branco).
-                  Isso garante que mesmo que a imagem seja colorida (ex: a do header),
-                  ela apareça branca no rodapé.
+                  Exibe o logo original sem filtros de cor, conforme solicitado.
+                  A imagem deve ser legível sobre o fundo azul (#264788).
                */}
                <img 
                  src={settings.logoFooter.url || "https://placehold.co/200x80/264788/FFFFFF/png?text=Agro+Brasil"} 
                  alt="Agropecuária Brasil" 
-                 className="h-16 w-auto object-contain brightness-0 invert"
+                 className="h-16 w-auto object-contain"
                />
             </div>
             
