@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
@@ -66,8 +65,8 @@ const BrandCarousel: React.FC = () => {
           {brands.length > itemsPerPage && (
             <button 
               onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white border border-gray-200 text-[#264788] rounded-full shadow-md flex items-center justify-center hover:bg-[#264788] hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100"
-              aria-label="Anterior"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white border border-gray-200 text-[#264788] rounded-full shadow-md flex items-center justify-center hover:bg-[#264788] hover:text-white transition-all duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100 focus:opacity-100 min-w-[48px] min-h-[48px]"
+              aria-label="Marca Anterior"
             >
               <ChevronLeft size={24} />
             </button>
@@ -92,6 +91,9 @@ const BrandCarousel: React.FC = () => {
                       alt={brand.name} 
                       className="pointer-events-none max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
                       style={{ pointerEvents: 'none' }}
+                      width="300"
+                      height="150"
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -102,8 +104,8 @@ const BrandCarousel: React.FC = () => {
           {brands.length > itemsPerPage && (
             <button 
               onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white border border-gray-200 text-[#264788] rounded-full shadow-md flex items-center justify-center hover:bg-[#264788] hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100"
-              aria-label="Próximo"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white border border-gray-200 text-[#264788] rounded-full shadow-md flex items-center justify-center hover:bg-[#264788] hover:text-white transition-all duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100 focus:opacity-100 min-w-[48px] min-h-[48px]"
+              aria-label="Próxima Marca"
             >
               <ChevronRight size={24} />
             </button>

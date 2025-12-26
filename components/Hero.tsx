@@ -88,19 +88,17 @@ const Hero: React.FC = () => {
                 index === currentIndex ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              {/* Uso de <picture> para que o navegador baixe APENAS a imagem necessária (Mobile ou Desktop) */}
               <picture>
-                  {/* Se houver imagem mobile cadastrada, usa ela em telas pequenas */}
                   {slide.mobileImage && (
-                      <source media="(max-width: 768px)" srcSet={slide.mobileImage} />
+                      <source media="(max-width: 768px)" srcSet={slide.mobileImage} width="800" height="1000" />
                   )}
-                  {/* Fallback para Desktop ou se não houver mobile */}
                   <img 
                     src={slide.image} 
                     alt={slide.title} 
                     className="w-full h-full object-cover"
-                    fetchPriority={isFirstSlide ? "high" : "auto"} // Prioriza LCP
-                    loading={isFirstSlide ? "eager" : "lazy"} // LCP não pode ser lazy
+                    // PERFORMANCE: fetchPriority='high' na primeira imagem ajuda no LCP (Largest Contentful Paint)
+                    fetchPriority={isFirstSlide ? "high" : "auto"}
+                    loading={isFirstSlide ? "eager" : "lazy"}
                     width="1920" 
                     height="720"
                     decoding="async"

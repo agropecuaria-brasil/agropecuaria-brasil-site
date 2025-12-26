@@ -60,10 +60,10 @@ const OffersCarousel: React.FC = () => {
           {products.length > itemsPerPage && (
             <button 
               onClick={prevSlide} 
-              className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#24902C] shadow-lg opacity-0 group-hover:opacity-100 transition-opacity min-w-[48px] min-h-[48px] flex items-center justify-center"
+              className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#24902C] shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity min-w-[48px] min-h-[48px] flex items-center justify-center border border-gray-100"
               aria-label="Oferta Anterior"
             >
-                <ChevronLeft />
+                <ChevronLeft size={24} />
             </button>
           )}
           
@@ -73,7 +73,19 @@ const OffersCarousel: React.FC = () => {
                 <div key={product.id} className="flex-shrink-0 px-3" style={{ width: `${100 / itemsPerPage}%` }}>
                   <div className="bg-white rounded-2xl p-5 border border-gray-100 h-full flex flex-col hover:-translate-y-2 hover:shadow-lg transition-all relative">
                     {product.badge && <span className="absolute top-4 left-4 z-10 bg-[#E5C808] text-[#264788] text-[11px] font-bold px-3 py-1 rounded-full">{product.badge}</span>}
-                    <div className="h-[200px] flex items-center justify-center mb-4"><img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain" /></div>
+                    
+                    <div className="h-[200px] flex items-center justify-center mb-4 relative">
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="max-h-full max-w-full object-contain" 
+                        loading="lazy"
+                        width="500"
+                        height="500"
+                        decoding="async"
+                      />
+                    </div>
+                    
                     <div className="flex flex-col flex-grow">
                       
                       {/* Tratamento para múltiplas categorias */}
@@ -83,7 +95,7 @@ const OffersCarousel: React.FC = () => {
                            : product.categories || 'Geral'}
                       </span>
                       
-                      <h4 className="text-[#2C3E50] font-bold text-lg mb-3 line-clamp-2">{product.name}</h4>
+                      <h4 className="text-[#2C3E50] font-bold text-lg mb-3 line-clamp-2 min-h-[56px]">{product.name}</h4>
                       <div className="mt-auto">
                         {product.oldPrice && <span className="text-sm text-gray-400 line-through">R$ {product.oldPrice.toFixed(2).replace('.', ',')}</span>}
                         <span className="block text-2xl font-extrabold text-[#24902C] mb-4">R$ {product.price.toFixed(2).replace('.', ',')}</span>
@@ -108,10 +120,10 @@ const OffersCarousel: React.FC = () => {
           {products.length > itemsPerPage && (
              <button 
                 onClick={nextSlide} 
-                className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#24902C] shadow-lg opacity-0 group-hover:opacity-100 transition-opacity min-w-[48px] min-h-[48px] flex items-center justify-center"
+                className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#24902C] shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity min-w-[48px] min-h-[48px] flex items-center justify-center border border-gray-100"
                 aria-label="Próxima Oferta"
              >
-                <ChevronRight />
+                <ChevronRight size={24} />
              </button>
           )}
         </div>

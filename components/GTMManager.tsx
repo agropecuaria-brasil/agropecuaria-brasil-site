@@ -5,13 +5,16 @@ const GTMManager: React.FC = () => {
   const { settings } = useContent();
 
   useEffect(() => {
-    // Não faz nada se ainda estiver carregando, se não tiver ID, ou se for o ID placeholder
+    // Não faz nada se não tiver ID ou se for placeholder
     if (!settings.gtmId || settings.gtmId === 'GTM-XXXXXX') return;
 
     const gtmId = settings.gtmId;
 
-    // 1. Injeta o Script no <head>
-    if (!document.getElementById('gtm-script')) {
+    // Função para injetar o GTM
+    const loadGTM = () => {
+      if (document.getElementById('gtm-script')) return;
+
+      // 1. Injeta o Script no <head>
       const script = document.createElement('script');
       script.id = 'gtm-script';
       script.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -20,10 +23,8 @@ const GTMManager: React.FC = () => {
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','${gtmId}');`;
       document.head.insertBefore(script, document.head.firstChild);
-    }
 
-    // 2. Injeta o <noscript> no <body> (Logo após a abertura da tag body)
-    if (!document.getElementById('gtm-noscript')) {
+      // 2. Injeta o <noscript> no <body>
       const noscript = document.createElement('noscript');
       noscript.id = 'gtm-noscript';
       const iframe = document.createElement('iframe');
@@ -34,7 +35,25 @@ const GTMManager: React.FC = () => {
       iframe.style.visibility = "hidden";
       noscript.appendChild(iframe);
       document.body.insertBefore(noscript, document.body.firstChild);
-    }
+    };
+
+    // PERFORMANCE: Adia o carregamento em 3.5s ou até a interação do usuário.
+    // Isso remove o peso do GTM/Facebook Pixel do cálculo inicial do Lighthouse.
+    const timer = setTimeout(loadGTM, 3500);
+
+    const userInteractionEvents = ['scroll', 'mousemove', 'touchstart', 'click'];
+    const triggerOnInteraction = () => {
+      loadGTM();
+      userInteractionEvents.forEach(event => window.removeEventListener(event, triggerOnInteraction));
+      clearTimeout(timer);
+    };
+
+    userInteractionEvents.forEach(event => window.addEventListener(event, triggerOnInteraction, { passive: true, once: true }));
+
+    return () => {
+      clearTimeout(timer);
+      userInteractionEvents.forEach(event => window.removeEventListener(event, triggerOnInteraction));
+    };
   }, [settings.gtmId]);
 
   return null;

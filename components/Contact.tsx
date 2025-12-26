@@ -23,14 +23,17 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
                    src={settings.logoFooter.url} 
                    alt="Agropecuária Brasil" 
                    className="h-16 w-auto object-contain"
+                   width="200"
+                   height="80"
+                   loading="lazy"
                  />
                ) : (
                  <span className="text-xl font-bold text-white tracking-tighter">Agropecuária Brasil</span>
                )}
             </div>
             
-            {/* Contraste melhorado: text-gray-300 para text-gray-200 em fundo escuro */}
-            <p className="text-gray-200 text-sm leading-relaxed mb-6 whitespace-pre-line">
+            {/* Contraste melhorado: text-gray-100 é melhor que gray-200/300 em fundo azul escuro */}
+            <p className="text-gray-100 text-sm leading-relaxed mb-6 whitespace-pre-line">
               {settings.footerDescription}
             </p>
             <div className="flex space-x-4">
@@ -64,20 +67,20 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="text-[#E5C808] mt-1 shrink-0" size={18} />
-                <span className="text-gray-200 text-sm whitespace-pre-line">
+                <span className="text-gray-100 text-sm whitespace-pre-line">
                   {contactInfo.address}
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="text-[#E5C808] mt-1 shrink-0" size={18} />
-                <div className="text-gray-200 text-sm flex flex-col">
+                <div className="text-gray-100 text-sm flex flex-col">
                   <span>{contactInfo.phonePrimary}</span>
                   {contactInfo.phoneSecondary && <span>{contactInfo.phoneSecondary}</span>}
                 </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="text-[#E5C808] shrink-0" size={18} />
-                <span className="text-gray-200 text-sm">{contactInfo.email}</span>
+                <span className="text-gray-100 text-sm">{contactInfo.email}</span>
               </li>
             </ul>
           </div>
@@ -87,14 +90,14 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Clock className="text-[#E5C808] mt-1 shrink-0" size={18} />
-                <div className="text-gray-200 text-sm">
+                <div className="text-gray-100 text-sm">
                   <p className="font-semibold text-white">Segunda a Sábado</p>
                   <p>{contactInfo.openingHoursWeek}</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="text-[#E5C808] mt-1 shrink-0" size={18} />
-                <div className="text-gray-200 text-sm">
+                <div className="text-gray-100 text-sm">
                   <p className="font-semibold text-white">Domingo</p>
                   <p>{contactInfo.openingHoursWeekend}</p>
                 </div>
@@ -104,18 +107,18 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-gray-400">
+          <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-gray-300">
             <p className="text-center md:text-left">
               © 2026 Agropecuária Brasil LTDA - CNPJ: 06.881.706-0001-96 | Todos os direitos reservados.
             </p>
-            <span className="hidden md:block text-gray-600">|</span>
+            <span className="hidden md:block text-gray-500">|</span>
             <Link 
               to="/politica-privacidade" 
               className="hover:text-[#E5C808] transition-colors underline decoration-dotted underline-offset-2 min-h-[44px] md:min-h-0 flex items-center"
             >
               Política de Privacidade
             </Link>
-            <span className="hidden md:block text-gray-600">|</span>
+            <span className="hidden md:block text-gray-500">|</span>
             <button 
               onClick={onOpenCookieSettings} 
               className="hover:text-[#E5C808] transition-colors underline decoration-dotted underline-offset-2 min-h-[44px] md:min-h-0"
