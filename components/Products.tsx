@@ -35,10 +35,15 @@ const Products: React.FC = () => {
               <div key={idx} className="group relative rounded-2xl overflow-hidden shadow-lg bg-white h-full flex flex-col">
                 <div className="h-48 overflow-hidden relative">
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10"></div>
+                  {/* CLS Fix: Width/Height explícitos para o browser reservar espaço */}
                   <img 
                     src={item.image} 
                     alt={item.title} 
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                    width="600"
+                    height="400"
+                    decoding="async"
                   />
                   <div className="absolute top-4 right-4 bg-white p-2 rounded-full z-20 shadow-md">
                     <Icon className="text-[#24902C]" size={20} />

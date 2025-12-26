@@ -12,6 +12,11 @@
     <meta name="theme-color" content="#24902C" />
     <link rel="canonical" href="https://agropecuariabrasil.com.br/" />
 
+    <!-- Performance: Preconnect ao CDN do Sanity e Google Fonts -->
+    <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://agropecuariabrasil.com.br/" />
@@ -23,8 +28,6 @@
     <title>Agropecuária Brasil | Pet Shop, Rações e Produtos Rurais em São Carlos</title>
     
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS (Mantido via CDN para simplificar setup local) -->
@@ -64,6 +67,11 @@
            Isso força o event.target a ser o botão pai, garantindo que o Click Text não seja undefined. */
         .click-fix > * {
             pointer-events: none !important;
+        }
+        /* CLS Fix: Garante altura mínima para imagens antes do carregamento */
+        img {
+            font-size: 0;
+            display: block;
         }
     </style>
 

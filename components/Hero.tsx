@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import { ArrowRight, MapPin } from 'lucide-react';
@@ -30,7 +29,6 @@ const Hero: React.FC = () => {
     }
   };
 
-  // Mapeia o tema selecionado no Sanity para classes Tailwind
   const getThemeStyles = (theme: string) => {
     switch (theme) {
       case 'green':
@@ -46,7 +44,7 @@ const Hero: React.FC = () => {
           gradient: "from-[#E5C808]/95 via-[#E5C808]/70 to-black/10",
           textColor: "text-[#264788]",
           badgeStyle: "bg-[#24902C]/10 border-[#24902C] text-[#24902C]",
-          whatsappBtn: "", // Verde padrão
+          whatsappBtn: "",
           outlineBtn: "!text-[#264788] !border-[#264788] hover:!bg-[#264788] hover:!text-white"
         };
       case 'white':
@@ -77,11 +75,10 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="relative h-[720px] flex items-center overflow-hidden bg-[#264788] pt-[136px]">
       
-      {/* Background Slider */}
+      {/* Background Slider - Otimizado com Picture e WebP */}
       <div className="absolute inset-0 z-0">
         {heroSlides.map((slide, index) => {
           const slideStyles = getThemeStyles(slide.theme);
-          // Apenas a primeira imagem deve ter prioridade alta para melhorar o LCP
           const isFirstSlide = index === 0;
 
           return (
@@ -91,20 +88,25 @@ const Hero: React.FC = () => {
                 index === currentIndex ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              <img 
-                src={slide.image} 
-                alt={slide.title} 
-                className="w-full h-full object-cover hidden md:block"
-                fetchPriority={isFirstSlide ? "high" : "auto"}
-                loading={isFirstSlide ? "eager" : "lazy"}
-              />
-               <img 
-                src={slide.mobileImage || slide.image} 
-                alt={slide.title} 
-                className="w-full h-full object-cover md:hidden"
-                fetchPriority={isFirstSlide ? "high" : "auto"}
-                loading={isFirstSlide ? "eager" : "lazy"}
-              />
+              {/* Uso de <picture> para que o navegador baixe APENAS a imagem necessária (Mobile ou Desktop) */}
+              <picture>
+                  {/* Se houver imagem mobile cadastrada, usa ela em telas pequenas */}
+                  {slide.mobileImage && (
+                      <source media="(max-width: 768px)" srcSet={slide.mobileImage} />
+                  )}
+                  {/* Fallback para Desktop ou se não houver mobile */}
+                  <img 
+                    src={slide.image} 
+                    alt={slide.title} 
+                    className="w-full h-full object-cover"
+                    fetchPriority={isFirstSlide ? "high" : "auto"} // Prioriza LCP
+                    loading={isFirstSlide ? "eager" : "lazy"} // LCP não pode ser lazy
+                    width="1920" 
+                    height="720"
+                    decoding="async"
+                  />
+              </picture>
+               
                <div className={`absolute inset-0 bg-gradient-to-r ${slideStyles.gradient} z-10`}></div>
             </div>
           );

@@ -24,6 +24,9 @@ const PromoBanners: React.FC = () => {
                    alt={banner.title} 
                    className="w-full h-full object-cover object-right transform group-hover:scale-105 transition-transform duration-700"
                    loading="lazy"
+                   width="800"
+                   height="400"
+                   decoding="async"
                  />
               </div>
               <div 

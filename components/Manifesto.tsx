@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Quote, ShieldCheck } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
@@ -22,6 +21,10 @@ const Manifesto: React.FC = () => {
                   src={settings.aboutImage} 
                   alt="Agropecuária Brasil - Quem Somos" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                  width="800"
+                  height="1000"
+                  decoding="async"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-400 p-10 text-center">
