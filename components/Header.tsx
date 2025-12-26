@@ -82,10 +82,14 @@ const Header: React.FC = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
           }`}
         >
-           <ActiveIcon size={18} className="text-[#E5C808]" strokeWidth={2.5} />
-           <span className="text-xs md:text-sm font-semibold tracking-wide">
-             {announcements[currentAnnouncement]?.text}
-           </span>
+           {announcements.length > 0 && (
+             <>
+               <ActiveIcon size={18} className="text-[#E5C808]" strokeWidth={2.5} />
+               <span className="text-xs md:text-sm font-semibold tracking-wide">
+                 {announcements[currentAnnouncement]?.text}
+               </span>
+             </>
+           )}
         </div>
       </div>
 
@@ -96,11 +100,15 @@ const Header: React.FC = () => {
             {/* Logo */}
             <div className="flex-shrink-0 h-full py-2 flex items-center">
                <Link to="/" className="h-full flex items-center" aria-label="Ir para página inicial">
-                 <img 
-                   src={settings.logoHeader.url} 
-                   alt="Logo Agropecuária Brasil" 
-                   className="h-full w-auto object-contain max-h-16"
-                 />
+                 {settings.logoHeader?.url ? (
+                   <img 
+                     src={settings.logoHeader.url} 
+                     alt="Logo Agropecuária Brasil" 
+                     className="h-full w-auto object-contain max-h-16"
+                   />
+                 ) : (
+                   <span className="text-2xl font-bold text-[#24902C] tracking-tighter">Agropecuária Brasil</span>
+                 )}
                </Link>
             </div>
 
@@ -145,11 +153,15 @@ const Header: React.FC = () => {
           <div className="md:hidden flex justify-between items-center h-full">
             <div className="flex items-center h-full py-3">
               <Link to="/" className="h-full flex items-center" aria-label="Ir para página inicial">
-                <img 
-                   src={settings.logoHeader.url} 
-                   alt="Logo" 
-                   className="h-full w-auto object-contain max-h-12"
-                />
+                 {settings.logoHeader?.url ? (
+                   <img 
+                     src={settings.logoHeader.url} 
+                     alt="Logo" 
+                     className="h-full w-auto object-contain max-h-12"
+                   />
+                 ) : (
+                   <span className="text-lg font-bold text-[#24902C] tracking-tighter">Agropecuária Brasil</span>
+                 )}
               </Link>
             </div>
 

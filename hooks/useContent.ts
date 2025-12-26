@@ -2,17 +2,13 @@ import { useState, useEffect } from 'react';
 import { ContentContextType } from '../types';
 import { sanityClient } from '../lib/sanity';
 
-// Placeholder logos apenas para não quebrar o layout se nada for configurado
-const PLACEHOLDER_LOGO = "https://placehold.co/200x80/264788/FFFFFF/png?text=Agro+Brasil";
-
 const defaultData: ContentContextType = {
   isLoading: true,
   settings: {
-    logoHeader: { url: PLACEHOLDER_LOGO },
-    logoFooter: { url: PLACEHOLDER_LOGO },
+    logoHeader: { url: '' },
+    logoFooter: { url: '' },
     heroSlides: [], 
     showcaseItems: [],
-    instagramPosts: [],
     aboutImage: "",
     footerDescription: '',
     whatsappGlobal: '',
@@ -63,8 +59,8 @@ export const useContent = () => {
               "image": image.asset->url + "?auto=format&fm=webp&q=80"
             },
             instagramPosts[]{
-              caption,
               link,
+              caption,
               "image": image.asset->url + "?auto=format&fm=webp&q=80"
             },
             announcements[]{
@@ -136,9 +132,8 @@ export const useContent = () => {
               ...data.settings,
               heroSlides: data.settings.heroSlides || [],
               showcaseItems: data.settings.showcaseItems || [],
-              instagramPosts: data.settings.instagramPosts || [],
-              logoHeader: data.settings.logoHeader?.url ? data.settings.logoHeader : { url: PLACEHOLDER_LOGO },
-              logoFooter: data.settings.logoFooter?.url ? data.settings.logoFooter : { url: PLACEHOLDER_LOGO },
+              logoHeader: data.settings.logoHeader?.url ? data.settings.logoHeader : { url: '' },
+              logoFooter: data.settings.logoFooter?.url ? data.settings.logoFooter : { url: '' },
               aboutImage: data.settings.aboutImage || "",
               contactInfo: { ...prev.settings.contactInfo, ...(data.settings.contactInfo || {}) }
             } : prev.settings,

@@ -44,7 +44,12 @@ export default {
           fields: [
             { name: 'title', type: 'string', title: 'Título' },
             { name: 'description', type: 'text', title: 'Descrição', rows: 2 },
-            { name: 'image', type: 'image', title: 'Imagem de Fundo' },
+            { 
+              name: 'image', 
+              type: 'image', 
+              title: 'Imagem de Fundo',
+              description: 'Recomendado: 800x600px ou 600x400px (Horizontal). Formato: JPEG.'
+            },
             { 
               name: 'icon', 
               type: 'string', 
@@ -165,16 +170,21 @@ export default {
     },
     {
       name: 'instagramPosts',
-      title: 'Posts do Instagram (Feed)',
+      title: 'Posts do Instagram (Manual)',
+      description: 'Adicione as últimas 4 fotos do Instagram para aparecerem no site.',
       type: 'array',
-      description: 'Adicione as últimas 4 fotos do Instagram manualmente.',
       of: [
         {
           type: 'object',
           fields: [
-            { name: 'image', type: 'image', title: 'Imagem', options: { hotspot: true } },
-            { name: 'caption', type: 'string', title: 'Legenda (Alt Text)' },
-            { name: 'link', type: 'url', title: 'Link do Post' }
+            { 
+              name: 'image', 
+              title: 'Imagem do Post', 
+              type: 'image',
+              options: { hotspot: true } 
+            },
+            { name: 'link', title: 'Link do Post', type: 'url' },
+            { name: 'caption', title: 'Legenda / Texto Alternativo', type: 'string' }
           ],
           preview: {
             select: {

@@ -16,12 +16,18 @@ const Manifesto: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           
           <div className="lg:w-1/2 w-full">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[400px] md:h-[500px] group">
-              <img 
-                src={settings.aboutImage || "https://picsum.photos/seed/farmer/800/1000"} 
-                alt="Agropecuária Brasil - Quem Somos" 
-                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-              />
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[400px] md:h-[500px] group bg-gray-100">
+              {settings.aboutImage ? (
+                <img 
+                  src={settings.aboutImage} 
+                  alt="Agropecuária Brasil - Quem Somos" 
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400 p-10 text-center">
+                   <span>Imagem "Quem Somos" não configurada</span>
+                </div>
+              )}
               
               {/* Selo de Confiança */}
               <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-gray-100 flex flex-col sm:flex-row items-start sm:items-center gap-4 transform transition-all duration-500 hover:translate-y-[-4px]">

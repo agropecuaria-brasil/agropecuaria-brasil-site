@@ -24,8 +24,8 @@ export interface ShowcaseItem {
 
 export interface InstagramPost {
   image: string;
-  caption?: string;
   link?: string;
+  caption?: string;
 }
 
 export interface SiteSettings {
@@ -35,13 +35,13 @@ export interface SiteSettings {
   logoFooter: SanityImage;
   heroSlides: HeroSlideData[]; 
   showcaseItems?: ShowcaseItem[]; 
-  instagramPosts?: InstagramPost[];
   aboutImage: string; 
   footerDescription: string;
   whatsappGlobal: string;
   whatsappGroupUrl: string;
   googleReviewsUrl?: string; 
   instagramUrl: string;
+  instagramPosts?: InstagramPost[];
   facebookUrl: string;
   gtmId: string;
   contactInfo: {
