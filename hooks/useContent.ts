@@ -41,41 +41,35 @@ export const useContent = () => {
     const fetchSanityData = async () => {
       try {
         // Otimização de Imagens:
-        // q=75: Qualidade 75% (imperceptível a olho nu, muito mais leve)
-        // fm=webp: Formato WebP (mais leve que JPEG/PNG)
-        // w=XXX: Largura máxima específica para cada contexto
+        // Ajustado para mobile first em listas grandes
         
         const query = `{
           "settings": *[_type == "siteSettings"][0]{
             ...,
             "favicon": favicon.asset->url,
-            // Logos pequenos
             logoHeader { "url": asset->url + "?auto=format&fm=webp&h=80&q=85" },
             logoFooter { "url": asset->url + "?auto=format&fm=webp&h=80&q=85" },
             
-            // Imagem Sobre: Vertical, max 800px largura
             "aboutImage": aboutImage.asset->url + "?auto=format&fm=webp&w=800&q=75",
             
-            // Hero: Desktop 1920px, Mobile 800px
             heroSlides[]{
               ...,
               "image": image.asset->url + "?auto=format&fm=webp&w=1920&q=75",
               "mobileImage": mobileImage.asset->url + "?auto=format&fm=webp&w=800&q=75"
             },
             
-            // Vitrine: Cards menores, max 600px
             showcaseItems[]{
               title,
               description,
               icon,
-              "image": image.asset->url + "?auto=format&fm=webp&w=600&h=400&fit=crop&q=75"
+              // Reduzido para w=400 para carregar mais rápido no mobile
+              "image": image.asset->url + "?auto=format&fm=webp&w=400&h=300&fit=crop&q=70"
             },
             
-            // Instagram: Thumbnails quadrados 400x400
             instagramPosts[]{
               link,
               caption,
-              "image": image.asset->url + "?auto=format&fm=webp&w=400&h=400&fit=crop&q=75"
+              "image": image.asset->url + "?auto=format&fm=webp&w=300&h=300&fit=crop&q=70"
             },
             announcements[]{
               text,
@@ -85,7 +79,8 @@ export const useContent = () => {
             featuredProducts[]->{
               ...,
               "id": _id,
-              "image": image.asset->url + "?auto=format&fm=webp&w=500&h=500&fit=fill&bg=ffffff&q=75"
+              // Imagem de produto otimizada para grid card (350px é suficiente para mobile e grid desktop)
+              "image": image.asset->url + "?auto=format&fm=webp&w=350&h=350&fit=fill&bg=ffffff&q=75"
             },
 
             featuredTestimonials[]->{
@@ -95,27 +90,24 @@ export const useContent = () => {
               rating,
               "date": dateText,
               source,
-              "avatar": avatar.asset->url + "?auto=format&fm=webp&w=100&h=100&fit=crop&q=75"
+              "avatar": avatar.asset->url + "?auto=format&fm=webp&w=80&h=80&fit=crop&q=75"
             }
           },
           
-          // Produtos Gerais: max 500x500
           "allProducts": *[_type == "product" && active == true] | order(_createdAt desc)[0..15]{
             ...,
             "id": _id,
-            "image": image.asset->url + "?auto=format&fm=webp&w=500&h=500&fit=fill&bg=ffffff&q=75"
+            "image": image.asset->url + "?auto=format&fm=webp&w=350&h=350&fit=fill&bg=ffffff&q=75"
           },
           
-          // Banners Promocionais: max 1200px
           "promoBanners": *[_type == "promoBanner"]{
              ...,
-             "bgImage": bgImage.asset->url + "?auto=format&fm=webp&w=1200&q=75"
+             "bgImage": bgImage.asset->url + "?auto=format&fm=webp&w=1000&q=75"
           },
           
-          // Logos Marcas: Pequenos, max 300px
           "brands": *[_type == "brand"] | order(name asc){
              name,
-             "logo": logo.asset->url + "?auto=format&fm=webp&w=300&q=80"
+             "logo": logo.asset->url + "?auto=format&fm=webp&w=250&q=80"
           },
           
           "allTestimonials": *[_type == "testimonial"] | order(_createdAt desc){
@@ -125,7 +117,7 @@ export const useContent = () => {
              rating,
              "date": dateText,
              source,
-             "avatar": avatar.asset->url + "?auto=format&fm=webp&w=100&h=100&fit=crop&q=75"
+             "avatar": avatar.asset->url + "?auto=format&fm=webp&w=80&h=80&fit=crop&q=75"
           }
         }`;
         

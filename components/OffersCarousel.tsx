@@ -7,7 +7,7 @@ import WhatsAppIcon from './WhatsAppIcon';
 const OffersCarousel: React.FC = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
-  const [isPaused, setIsPaused] = useState(false); // Estado para pausar no hover
+  const [isPaused, setIsPaused] = useState(false);
   const { openModal } = useWhatsApp();
   const { products } = useContent(); 
 
@@ -22,13 +22,13 @@ const OffersCarousel: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Efeito para Loop Eterno (Auto-play)
   useEffect(() => {
     if (isPaused || !products || products.length === 0) return;
     
+    // Intervalo aumentado para 5s para reduzir Main Thread work
     const interval = setInterval(() => {
       nextSlide();
-    }, 4000); // 4 segundos
+    }, 5000); 
 
     return () => clearInterval(interval);
   }, [startIndex, itemsPerPage, isPaused, products]);
@@ -41,15 +41,16 @@ const OffersCarousel: React.FC = () => {
     setStartIndex((prev) => (prev <= 0 ? products.length - itemsPerPage : prev - 1));
   };
 
-  // Se não houver produtos (Produção sem cadastro), não renderiza nada
   if (!products || products.length === 0) return null;
 
   return (
     <section id="ofertas" className="bg-[#E9F5EC] py-16 font-sans">
       <div className="max-w-7xl mx-auto px-4 relative">
         <div className="mb-10">
-          <h2 className="text-[#24902C] text-sm font-bold uppercase tracking-wider mb-2">Imperdível</h2>
-          <h3 className="text-[#2C3E50] text-3xl font-extrabold">Ofertas Especiais</h3>
+          {/* Contraste: Verde mais escuro */}
+          <h2 className="text-[#1e7a25] text-sm font-bold uppercase tracking-wider mb-2">Imperdível</h2>
+          {/* Hierarquia: Era H3, mas não tinha H2 antes se considerar o H2 acima como subtitulo. Ajustando estrutura. */}
+          <p className="text-[#2C3E50] text-3xl font-extrabold">Ofertas Especiais</p>
         </div>
 
         <div 
@@ -60,8 +61,9 @@ const OffersCarousel: React.FC = () => {
           {products.length > itemsPerPage && (
             <button 
               onClick={prevSlide} 
-              className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#24902C] shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity min-w-[48px] min-h-[48px] flex items-center justify-center border border-gray-100"
-              aria-label="Oferta Anterior"
+              // Acessibilidade: Botão 48x48px mínimo para toque
+              className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#1e7a25] shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity min-w-[48px] min-h-[48px] flex items-center justify-center border border-gray-100"
+              aria-label="Ver oferta anterior"
             >
                 <ChevronLeft size={24} />
             </button>
@@ -72,7 +74,9 @@ const OffersCarousel: React.FC = () => {
               {products.map((product) => (
                 <div key={product.id} className="flex-shrink-0 px-3" style={{ width: `${100 / itemsPerPage}%` }}>
                   <div className="bg-white rounded-2xl p-5 border border-gray-100 h-full flex flex-col hover:-translate-y-2 hover:shadow-lg transition-all relative">
-                    {product.badge && <span className="absolute top-4 left-4 z-10 bg-[#E5C808] text-[#264788] text-[11px] font-bold px-3 py-1 rounded-full">{product.badge}</span>}
+                    
+                    {/* Contraste do Badge: Texto escuro no amarelo */}
+                    {product.badge && <span className="absolute top-4 left-4 z-10 bg-[#E5C808] text-[#264788] text-[11px] font-extrabold px-3 py-1 rounded-full">{product.badge}</span>}
                     
                     <div className="h-[200px] flex items-center justify-center mb-4 relative">
                       <img 
@@ -80,28 +84,35 @@ const OffersCarousel: React.FC = () => {
                         alt={product.name} 
                         className="max-h-full max-w-full object-contain" 
                         loading="lazy"
-                        width="500"
-                        height="500"
+                        width="350"
+                        height="350"
                         decoding="async"
                       />
                     </div>
                     
                     <div className="flex flex-col flex-grow">
                       
-                      {/* Tratamento para múltiplas categorias */}
-                      <span className="text-xs text-[#6D7B8C] font-bold uppercase mb-1">
+                      {/* Contraste: Cinza mais escuro para categoria */}
+                      <span className="text-xs text-[#546b82] font-bold uppercase mb-1">
                         {Array.isArray(product.categories) 
                            ? product.categories.join(' • ') 
                            : product.categories || 'Geral'}
                       </span>
                       
-                      <h4 className="text-[#2C3E50] font-bold text-lg mb-3 line-clamp-2 min-h-[56px]">{product.name}</h4>
+                      {/* Hierarquia: H3 para nome do produto */}
+                      <h3 className="text-[#2C3E50] font-bold text-lg mb-3 line-clamp-2 min-h-[56px]">{product.name}</h3>
+                      
                       <div className="mt-auto">
-                        {product.oldPrice && <span className="text-sm text-gray-400 line-through">R$ {product.oldPrice.toFixed(2).replace('.', ',')}</span>}
-                        <span className="block text-2xl font-extrabold text-[#24902C] mb-4">R$ {product.price.toFixed(2).replace('.', ',')}</span>
+                        {/* Contraste: Preço antigo mais visível */}
+                        {product.oldPrice && <span className="text-sm text-gray-500 line-through font-medium">R$ {product.oldPrice.toFixed(2).replace('.', ',')}</span>}
+                        
+                        {/* Contraste: Preço novo em verde escuro */}
+                        <span className="block text-2xl font-extrabold text-[#1e7a25] mb-4">R$ {product.price.toFixed(2).replace('.', ',')}</span>
+                        
                         <button 
                           onClick={() => openModal(product)} 
-                          className="gtm-btn-offer-buy w-full py-4 border-2 border-gray-100 rounded-xl font-bold text-[#2C3E50] hover:bg-[#24902C] hover:text-white transition-all flex items-center justify-center click-fix min-h-[48px]"
+                          // Acessibilidade: Botão com texto escuro para contraste no fundo transparente/branco e hover acessível
+                          className="gtm-btn-offer-buy w-full py-4 border-2 border-gray-200 rounded-xl font-bold text-[#2C3E50] hover:bg-[#1e7a25] hover:border-[#1e7a25] hover:text-white transition-all flex items-center justify-center click-fix min-h-[48px]"
                           data-gtm-label="Compre Agora"
                         >
                           <span className="flex items-center gap-2 pointer-events-none">
@@ -120,8 +131,8 @@ const OffersCarousel: React.FC = () => {
           {products.length > itemsPerPage && (
              <button 
                 onClick={nextSlide} 
-                className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#24902C] shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity min-w-[48px] min-h-[48px] flex items-center justify-center border border-gray-100"
-                aria-label="Próxima Oferta"
+                className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 bg-white p-3 rounded-full text-[#1e7a25] shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity min-w-[48px] min-h-[48px] flex items-center justify-center border border-gray-100"
+                aria-label="Ver próxima oferta"
              >
                 <ChevronRight size={24} />
              </button>
