@@ -34,28 +34,32 @@ const Header: React.FC = () => {
   const currentIconName = announcements[currentAnnouncement]?.icon || 'Calendar';
   const ActiveIcon = iconMap[currentIconName] || Calendar;
 
-  // Função ajustada para prevenir comportamento padrão do link e forçar scroll
+  // Função ajustada para prevenir comportamento padrão, forçar scroll e ATUALIZAR URL
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault(); // Impede que o navegador tente carregar a URL /#loja
+    e.preventDefault(); 
     setIsOpen(false);
     
-    // Remove a barra inicial se existir para pegar apenas o ID (ex: /#loja -> #loja)
-    const targetId = href.startsWith('/') ? href.substring(1) : href;
-
-    // Se for âncora interna (#)
-    if (targetId.startsWith('#')) {
-      if (location.pathname !== '/') {
-        // Se não estiver na home, vai para a home e depois rola
-        navigate('/');
-        setTimeout(() => {
+    // Atualiza a URL no navegador manualmente (History API) para manter ex: /contato ou /#contato
+    // Como estamos usando HashRouter, a URL é /#home, /#produtos etc.
+    // O href já vem como '/#produtos', então window.location.hash faria o serviço, mas queremos scroll suave.
+    
+    const targetId = href.startsWith('/') ? href.substring(1) : href; // Pega '#loja'
+    
+    // Se estiver na home
+    if (location.pathname === '/' || location.pathname === '') {
+       // Atualiza a URL visualmente
+       window.history.pushState({}, '', href);
+       
+       const el = document.querySelector(targetId);
+       if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+       // Se não estiver na home, navega para a home com a hash
+       navigate(href);
+       // O componente Hero ou ScrollToTop pode lidar com o scroll após a navegação
+       setTimeout(() => {
           const el = document.querySelector(targetId);
           if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
-      } else {
-        // Se já estiver na home, apenas rola
-        const el = document.querySelector(targetId);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
+       }, 300);
     }
   };
 

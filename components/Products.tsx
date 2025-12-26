@@ -1,36 +1,19 @@
 import React from 'react';
-import { Dog, Sprout, Tractor, Syringe } from 'lucide-react';
+import { Dog, Sprout, Tractor, Syringe, Fish, Cat } from 'lucide-react';
 import { useWhatsApp } from '../contexts/WhatsAppContext';
+import { useContent } from '../hooks/useContent';
 
-const categories = [
-  {
-    title: "Pets (Cães e Gatos)",
-    description: "Rações premium, brinquedos, camas e acessórios para o seu melhor amigo.",
-    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=600&auto=format&fit=crop&fm=webp",
-    icon: Dog
-  },
-  {
-    title: "Animais de Produção",
-    description: "Nutrição e equipamentos para bovinos, equinos, aves e suínos.",
-    image: "https://images.unsplash.com/photo-1596733430284-f7437764b1a9?q=80&w=600&auto=format&fit=crop&fm=webp",
-    icon: Tractor
-  },
-  {
-    title: "Plantação & Jardinagem",
-    description: "Ferramentas, sementes, adubos e tratamento para o seu cultivo e lazer.",
-    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=600&auto=format&fit=crop&fm=webp",
-    icon: Sprout
-  },
-  {
-    title: "Farmácia Veterinária",
-    description: "Medicamentos e vacinas com a orientação que você precisa e confia.",
-    image: "https://images.unsplash.com/photo-1599443015574-be5fe8a05783?q=80&w=600&auto=format&fit=crop&fm=webp",
-    icon: Syringe
-  }
-];
+const iconMap: Record<string, any> = {
+  Dog, Sprout, Tractor, Syringe, Fish, Cat
+};
 
 const Products: React.FC = () => {
   const { openModal } = useWhatsApp();
+  const { settings } = useContent();
+  
+  const showcaseItems = settings.showcaseItems || [];
+
+  if (showcaseItems.length === 0) return null;
 
   return (
     <section id="produtos" className="py-20 bg-white">
@@ -46,44 +29,47 @@ const Products: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((cat, idx) => (
-            <div key={idx} className="group relative rounded-2xl overflow-hidden shadow-lg bg-white h-full flex flex-col">
-              <div className="h-48 overflow-hidden relative">
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10"></div>
-                <img 
-                  src={cat.image} 
-                  alt={cat.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-4 right-4 bg-white p-2 rounded-full z-20 shadow-md">
-                   <cat.icon className="text-[#24902C]" size={20} />
+          {showcaseItems.map((item, idx) => {
+            const Icon = iconMap[item.icon] || Dog;
+            return (
+              <div key={idx} className="group relative rounded-2xl overflow-hidden shadow-lg bg-white h-full flex flex-col">
+                <div className="h-48 overflow-hidden relative">
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10"></div>
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 right-4 bg-white p-2 rounded-full z-20 shadow-md">
+                    <Icon className="text-[#24902C]" size={20} />
+                  </div>
+                </div>
+                <div className="p-6 flex-grow flex flex-col">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#264788] transition-colors">
+                    {item.title}
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4 flex-grow">
+                    {item.description}
+                  </p>
+                  <div className="mt-auto">
+                    <button 
+                      onClick={() => openModal({ 
+                        id: `cat-${idx}`, 
+                        name: item.title,
+                        categories: ['Categoria'],
+                        price: 0,
+                        image: item.image
+                      })}
+                      className="gtm-btn-product-consult text-[#24902C] font-semibold text-sm hover:underline flex items-center gap-1 group/btn click-fix min-h-[44px] w-full"
+                      data-gtm-label={`Consultar ${item.title}`}
+                    >
+                      <span className="pointer-events-none">Consultar disponibilidade &rarr;</span>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div className="p-6 flex-grow flex flex-col">
-                <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#264788] transition-colors">
-                  {cat.title}
-                </h4>
-                <p className="text-gray-600 text-sm mb-4 flex-grow">
-                  {cat.description}
-                </p>
-                <div className="mt-auto">
-                  <button 
-                    onClick={() => openModal({ 
-                      id: `cat-${idx}`, 
-                      name: cat.title,
-                      category: 'Categoria',
-                      price: 0,
-                      image: cat.image
-                    })}
-                    className="gtm-btn-product-consult text-[#24902C] font-semibold text-sm hover:underline flex items-center gap-1 group/btn click-fix min-h-[44px] w-full"
-                    data-gtm-label={`Consultar ${cat.title}`}
-                  >
-                    <span className="pointer-events-none">Consultar disponibilidade &rarr;</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

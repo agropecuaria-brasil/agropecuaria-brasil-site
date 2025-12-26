@@ -1,4 +1,3 @@
-
 export default {
   name: 'product',
   title: 'Produtos (Vitrine)',
@@ -11,9 +10,11 @@ export default {
       validation: (Rule: any) => Rule.required()
     },
     {
-      name: 'category',
-      title: 'Categoria',
-      type: 'string',
+      name: 'categories',
+      title: 'Categorias',
+      type: 'array',
+      description: 'Selecione uma ou mais categorias.',
+      of: [{ type: 'string' }],
       options: {
         list: [
           { title: 'Cães', value: 'Cães' },
@@ -28,8 +29,10 @@ export default {
           { title: 'Higiene', value: 'Higiene' },
           { title: 'Acessórios', value: 'Acessórios' },
           { title: 'Brinquedos', value: 'Brinquedos' },
+          { title: 'Jardinagem', value: 'Jardinagem' }
         ]
-      }
+      },
+      validation: (Rule: any) => Rule.required()
     },
     {
       name: 'price',

@@ -101,8 +101,6 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
               © 2026 Agropecuária Brasil LTDA - CNPJ: 06.881.706-0001-96 | Todos os direitos reservados.
             </p>
             <span className="hidden md:block text-gray-600">|</span>
-            <span className="text-[#E5C808] font-bold">v2.1 (Atualizado)</span>
-            <span className="hidden md:block text-gray-600">|</span>
             <Link 
               to="/politica-privacidade" 
               className="hover:text-[#E5C808] transition-colors underline decoration-dotted underline-offset-2 min-h-[44px] md:min-h-0 flex items-center"

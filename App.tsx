@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -9,9 +9,9 @@ import CookieConsent from './components/CookieConsent';
 import GTMManager from './components/GTMManager';
 import { WhatsAppProvider } from './contexts/WhatsAppContext';
 import { Loader2 } from 'lucide-react';
+import { useContent } from './hooks/useContent';
 
 // --- LAZY LOADING (Carregamento sob demanda) ---
-// Estes componentes só serão baixados pelo navegador quando o usuário rolar a página
 const PromoBanners = lazy(() => import('./components/PromoBanners'));
 const OffersCarousel = lazy(() => import('./components/OffersCarousel'));
 const Values = lazy(() => import('./components/Values'));
@@ -34,14 +34,33 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Loader visual simples para exibir enquanto os componentes pesados carregam
+// Componente para gerenciar Favicon
+const FaviconManager = () => {
+  const { settings } = useContent();
+  
+  useEffect(() => {
+    if (settings.favicon) {
+      let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']");
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.getElementsByTagName('head')[0].appendChild(link);
+      }
+      link.href = settings.favicon;
+    }
+  }, [settings.favicon]);
+
+  return null;
+};
+
+// Loader visual simples
 const SectionLoader = () => (
   <div className="w-full py-20 flex justify-center items-center bg-gray-50/50">
     <Loader2 className="w-8 h-8 text-[#24902C] animate-spin opacity-50" />
   </div>
 );
 
-// Layout padrão para as páginas normais (com Header e Footer)
+// Layout padrão
 const DefaultLayout = ({ children }: { children?: React.ReactNode }) => {
   const [isCookieSettingsOpen, setIsCookieSettingsOpen] = useState(false);
   return (
@@ -67,11 +86,9 @@ const DefaultLayout = ({ children }: { children?: React.ReactNode }) => {
 
 const HomePage = () => (
   <>
-    {/* Componentes iniciais mantidos com importação estática para LCP rápido */}
     <Hero />
     <CategoryNav />
     
-    {/* Componentes pesados carregados via Lazy Load com Suspense */}
     <Suspense fallback={<SectionLoader />}>
       <Products />
     </Suspense>
@@ -113,14 +130,14 @@ const HomePage = () => (
 function App() {
   return (
     <WhatsAppProvider>
-      {/* Componente que gerencia a injeção do Google Tag Manager */}
       <GTMManager />
+      <FaviconManager />
       
       <Router>
         <ScrollToTop />
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 selection:bg-[#E5C808] selection:text-[#264788]">
           <Routes>
-            {/* Páginas Especiais (Sem Header/Footer padrão) */}
+            {/* Páginas Especiais */}
             <Route 
               path="/whatsapp/meta" 
               element={
@@ -138,7 +155,7 @@ function App() {
               } 
             />
 
-            {/* Rotas Padrão do Site */}
+            {/* Rotas Padrão */}
             <Route path="/" element={<DefaultLayout><HomePage /></DefaultLayout>} />
             <Route path="/politica-privacidade" element={
               <DefaultLayout>

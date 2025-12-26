@@ -7,6 +7,7 @@ import WhatsAppIcon from './WhatsAppIcon';
 const OffersCarousel: React.FC = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [isPaused, setIsPaused] = useState(false); // Estado para pausar no hover
   const { openModal } = useWhatsApp();
   const { products } = useContent(); 
 
@@ -20,6 +21,17 @@ const OffersCarousel: React.FC = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Efeito para Loop Eterno (Auto-play)
+  useEffect(() => {
+    if (isPaused || !products || products.length === 0) return;
+    
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000); // 4 segundos
+
+    return () => clearInterval(interval);
+  }, [startIndex, itemsPerPage, isPaused, products]);
 
   const nextSlide = () => {
     setStartIndex((prev) => (prev >= products.length - itemsPerPage ? 0 : prev + 1));
@@ -40,7 +52,11 @@ const OffersCarousel: React.FC = () => {
           <h3 className="text-[#2C3E50] text-3xl font-extrabold">Ofertas Especiais</h3>
         </div>
 
-        <div className="relative group">
+        <div 
+           className="relative group"
+           onMouseEnter={() => setIsPaused(true)}
+           onMouseLeave={() => setIsPaused(false)}
+        >
           {products.length > itemsPerPage && (
             <button 
               onClick={prevSlide} 
@@ -59,7 +75,14 @@ const OffersCarousel: React.FC = () => {
                     {product.badge && <span className="absolute top-4 left-4 z-10 bg-[#E5C808] text-[#264788] text-[11px] font-bold px-3 py-1 rounded-full">{product.badge}</span>}
                     <div className="h-[200px] flex items-center justify-center mb-4"><img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain" /></div>
                     <div className="flex flex-col flex-grow">
-                      <span className="text-xs text-[#6D7B8C] font-bold uppercase mb-1">{product.category}</span>
+                      
+                      {/* Tratamento para múltiplas categorias */}
+                      <span className="text-xs text-[#6D7B8C] font-bold uppercase mb-1">
+                        {Array.isArray(product.categories) 
+                           ? product.categories.join(' • ') 
+                           : product.categories || 'Geral'}
+                      </span>
+                      
                       <h4 className="text-[#2C3E50] font-bold text-lg mb-3 line-clamp-2">{product.name}</h4>
                       <div className="mt-auto">
                         {product.oldPrice && <span className="text-sm text-gray-400 line-through">R$ {product.oldPrice.toFixed(2).replace('.', ',')}</span>}

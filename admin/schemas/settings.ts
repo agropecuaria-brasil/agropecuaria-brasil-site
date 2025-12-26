@@ -1,4 +1,3 @@
-
 export default {
   name: 'siteSettings',
   title: 'Configurações do Site',
@@ -10,11 +9,60 @@ export default {
       type: 'string'
     },
     {
+      name: 'favicon',
+      title: 'Favicon do Site',
+      type: 'image',
+      description: 'Ícone que aparece na aba do navegador. Recomendado: 32x32px ou 64x64px (PNG).'
+    },
+    {
         name: 'heroSlides',
         title: 'Carrossel Principal (Hero Banner)',
         type: 'array',
         of: [{ type: 'heroSlide' }],
         description: 'Adicione, edite ou reordene os banners principais do site.'
+    },
+    {
+      name: 'featuredProducts',
+      title: 'Ofertas Especiais (Ordenação)',
+      type: 'array',
+      description: 'Selecione e ordene os produtos que aparecerão no carrossel de ofertas.',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'product' }]
+        }
+      ]
+    },
+    {
+      name: 'showcaseItems',
+      title: 'Vitrine da Loja (Categorias)',
+      type: 'array',
+      description: 'Gerencie os 4 cards da seção Vitrine da Loja.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'title', type: 'string', title: 'Título' },
+            { name: 'description', type: 'text', title: 'Descrição', rows: 2 },
+            { name: 'image', type: 'image', title: 'Imagem de Fundo' },
+            { 
+              name: 'icon', 
+              type: 'string', 
+              title: 'Ícone',
+              options: {
+                list: [
+                  { title: 'Cachorro', value: 'Dog' },
+                  { title: 'Trator', value: 'Tractor' },
+                  { title: 'Planta', value: 'Sprout' },
+                  { title: 'Seringa (Vacina)', value: 'Syringe' },
+                  { title: 'Peixe', value: 'Fish' },
+                  { title: 'Gato', value: 'Cat' }
+                ]
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       name: 'announcements',
@@ -53,6 +101,18 @@ export default {
               subtitle: 'icon'
             }
           }
+        }
+      ]
+    },
+    {
+      name: 'featuredTestimonials',
+      title: 'Depoimentos (Ordenação)',
+      type: 'array',
+      description: 'Selecione e ordene os depoimentos que aparecerão no site.',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'testimonial' }]
         }
       ]
     },
@@ -105,16 +165,16 @@ export default {
     },
     {
       name: 'instagramPosts',
-      title: 'Posts do Instagram',
+      title: 'Posts do Instagram (Feed)',
       type: 'array',
-      description: 'Adicione imagens e links para simular um feed do Instagram.',
+      description: 'Adicione as últimas 4 fotos do Instagram manualmente.',
       of: [
         {
           type: 'object',
           fields: [
             { name: 'image', type: 'image', title: 'Imagem', options: { hotspot: true } },
-            { name: 'link', type: 'url', title: 'Link do Post' },
-            { name: 'caption', type: 'string', title: 'Legenda (Alt text)' }
+            { name: 'caption', type: 'string', title: 'Legenda (Alt Text)' },
+            { name: 'link', type: 'url', title: 'Link do Post' }
           ],
           preview: {
             select: {

@@ -1,4 +1,3 @@
-
 // Tipos baseados nos Schemas do Sanity
 
 export interface SanityImage {
@@ -6,12 +5,6 @@ export interface SanityImage {
   alt?: string;
   width?: number;
   height?: number;
-}
-
-export interface InstagramPost {
-  image: string;
-  link?: string;
-  caption?: string;
 }
 
 export interface HeroSlideData {
@@ -22,17 +15,33 @@ export interface HeroSlideData {
   theme: 'blue' | 'green' | 'yellow' | 'white';
 }
 
+export interface ShowcaseItem {
+  title: string;
+  description: string;
+  image: string;
+  icon: string;
+}
+
+export interface InstagramPost {
+  image: string;
+  caption?: string;
+  link?: string;
+}
+
 export interface SiteSettings {
+  title?: string;
+  favicon?: string; 
   logoHeader: SanityImage;
   logoFooter: SanityImage;
-  heroSlides: HeroSlideData[]; // Novo Array de Slides
-  aboutImage: string; // Nova Imagem do Manifesto
+  heroSlides: HeroSlideData[]; 
+  showcaseItems?: ShowcaseItem[]; 
+  instagramPosts?: InstagramPost[];
+  aboutImage: string; 
   footerDescription: string;
   whatsappGlobal: string;
   whatsappGroupUrl: string;
-  googleReviewsUrl?: string; // Novo campo para link de avaliações
+  googleReviewsUrl?: string; 
   instagramUrl: string;
-  instagramPosts?: InstagramPost[]; // Novo campo para feed do Instagram
   facebookUrl: string;
   gtmId: string;
   contactInfo: {
@@ -66,7 +75,7 @@ export interface PromoBanner {
 export interface ProductData {
   id: string | number;
   name: string;
-  category: string;
+  categories: string[]; 
   price: number;
   oldPrice?: number;
   image: string;
@@ -85,12 +94,11 @@ export interface Testimonial {
   rating: number;
   date: string;
   source: 'google' | 'facebook' | 'manual';
-  avatar?: string; // Nova foto
+  avatar?: string; 
 }
 
 export interface ContentContextType {
   settings: SiteSettings;
-  // Hero removido daqui pois agora está dentro de settings.heroSlides
   announcements: Announcement[];
   promoBanners: PromoBanner[];
   products: ProductData[];
