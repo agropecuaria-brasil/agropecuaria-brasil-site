@@ -43,8 +43,8 @@ const Products: React.FC = () => {
                     alt={item.title} 
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
-                    width="400"
-                    height="300"
+                    width="350" // Definir dimensão ajuda a reduzir CLS
+                    height="250"
                     decoding="async"
                   />
                   <div className="absolute top-4 right-4 bg-white p-2 rounded-full z-20 shadow-md">

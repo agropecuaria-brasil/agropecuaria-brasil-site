@@ -50,7 +50,7 @@ const PromoBanners: React.FC = () => {
                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                        loading="lazy"
                        width="800"
-                       height="400"
+                       height="450" // Altura explícita para aspect ratio correto e evitar CLS
                        decoding="async"
                      />
                   </div>
@@ -80,7 +80,7 @@ const PromoBanners: React.FC = () => {
                      className="w-full h-full object-cover object-center md:object-right transform group-hover:scale-105 transition-transform duration-700"
                      loading="lazy"
                      width="800"
-                     height="400"
+                     height="450" // Altura explícita para evitar CLS
                      decoding="async"
                    />
                 </div>

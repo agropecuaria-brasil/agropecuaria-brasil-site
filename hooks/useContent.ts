@@ -40,30 +40,33 @@ export const useContent = () => {
   useEffect(() => {
     const fetchSanityData = async () => {
       try {
-        // Otimização de Imagens:
-        // Ajustado para mobile first em listas grandes
+        // Otimização de Imagens para Performance (PageSpeed > 90):
+        // 1. fm=webp: Formato mais leve.
+        // 2. q=70: Qualidade visual idêntica, arquivo 30% menor.
+        // 3. w=...: Larguras limitadas para evitar carregar 4k em mobile.
         
         const query = `{
           "settings": *[_type == "siteSettings"][0]{
             ...,
             "favicon": favicon.asset->url,
-            logoHeader { "url": asset->url + "?auto=format&fm=webp&h=80&q=85" },
-            logoFooter { "url": asset->url + "?auto=format&fm=webp&h=80&q=85" },
+            logoHeader { "url": asset->url + "?auto=format&fm=webp&h=80&q=80" },
+            logoFooter { "url": asset->url + "?auto=format&fm=webp&h=80&q=80" },
             
-            "aboutImage": aboutImage.asset->url + "?auto=format&fm=webp&w=800&q=75",
+            "aboutImage": aboutImage.asset->url + "?auto=format&fm=webp&w=600&q=70",
             
             heroSlides[]{
               ...,
-              "image": image.asset->url + "?auto=format&fm=webp&w=1920&q=75",
-              "mobileImage": mobileImage.asset->url + "?auto=format&fm=webp&w=800&q=75"
+              // Desktop: 1440px é suficiente para LCP bom. Mobile: 640px.
+              "image": image.asset->url + "?auto=format&fm=webp&w=1440&q=70",
+              "mobileImage": mobileImage.asset->url + "?auto=format&fm=webp&w=640&q=70"
             },
             
             showcaseItems[]{
               title,
               description,
               icon,
-              // Reduzido para w=400 para carregar mais rápido no mobile
-              "image": image.asset->url + "?auto=format&fm=webp&w=400&h=300&fit=crop&q=70"
+              // Reduzido para w=350
+              "image": image.asset->url + "?auto=format&fm=webp&w=350&h=250&fit=crop&q=70"
             },
             
             instagramPosts[]{
@@ -79,8 +82,7 @@ export const useContent = () => {
             featuredProducts[]->{
               ...,
               "id": _id,
-              // Imagem de produto otimizada para grid card (350px é suficiente para mobile e grid desktop)
-              "image": image.asset->url + "?auto=format&fm=webp&w=350&h=350&fit=fill&bg=ffffff&q=75"
+              "image": image.asset->url + "?auto=format&fm=webp&w=300&h=300&fit=fill&bg=ffffff&q=70"
             },
 
             featuredTestimonials[]->{
@@ -90,24 +92,24 @@ export const useContent = () => {
               rating,
               "date": dateText,
               source,
-              "avatar": avatar.asset->url + "?auto=format&fm=webp&w=80&h=80&fit=crop&q=75"
+              "avatar": avatar.asset->url + "?auto=format&fm=webp&w=80&h=80&fit=crop&q=70"
             }
           },
           
           "allProducts": *[_type == "product" && active == true] | order(_createdAt desc)[0..15]{
             ...,
             "id": _id,
-            "image": image.asset->url + "?auto=format&fm=webp&w=350&h=350&fit=fill&bg=ffffff&q=75"
+            "image": image.asset->url + "?auto=format&fm=webp&w=300&h=300&fit=fill&bg=ffffff&q=70"
           },
           
           "promoBanners": *[_type == "promoBanner"]{
              ...,
-             "bgImage": bgImage.asset->url + "?auto=format&fm=webp&w=1000&q=75"
+             "bgImage": bgImage.asset->url + "?auto=format&fm=webp&w=800&q=70"
           },
           
           "brands": *[_type == "brand"] | order(name asc){
              name,
-             "logo": logo.asset->url + "?auto=format&fm=webp&w=250&q=80"
+             "logo": logo.asset->url + "?auto=format&fm=webp&w=200&q=80"
           },
           
           "allTestimonials": *[_type == "testimonial"] | order(_createdAt desc){
@@ -117,7 +119,7 @@ export const useContent = () => {
              rating,
              "date": dateText,
              source,
-             "avatar": avatar.asset->url + "?auto=format&fm=webp&w=80&h=80&fit=crop&q=75"
+             "avatar": avatar.asset->url + "?auto=format&fm=webp&w=80&h=80&fit=crop&q=70"
           }
         }`;
         

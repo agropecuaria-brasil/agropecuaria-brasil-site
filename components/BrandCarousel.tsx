@@ -91,9 +91,10 @@ const BrandCarousel: React.FC = () => {
                       alt={brand.name} 
                       className="pointer-events-none max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
                       style={{ pointerEvents: 'none' }}
-                      width="300"
-                      height="150"
+                      width="200"
+                      height="100"
                       loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>

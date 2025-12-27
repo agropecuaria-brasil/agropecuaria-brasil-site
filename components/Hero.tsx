@@ -90,18 +90,21 @@ const Hero: React.FC = () => {
             >
               <picture>
                   {slide.mobileImage && (
-                      <source media="(max-width: 768px)" srcSet={slide.mobileImage} width="800" height="1000" />
+                      <source media="(max-width: 768px)" srcSet={slide.mobileImage} width="640" height="800" />
                   )}
                   <img 
                     src={slide.image} 
                     alt={slide.title} 
                     className="w-full h-full object-cover"
-                    // PERFORMANCE: fetchPriority='high' na primeira imagem ajuda no LCP (Largest Contentful Paint)
+                    // PERFORMANCE LCP: 
+                    // 1. fetchPriority="high" apenas na primeira imagem.
+                    // 2. loading="eager" apenas na primeira.
+                    // 3. decoding="sync" para pintar imediatamente (critico para mobile).
                     fetchPriority={isFirstSlide ? "high" : "auto"}
                     loading={isFirstSlide ? "eager" : "lazy"}
-                    width="1920" 
+                    decoding={isFirstSlide ? "sync" : "async"}
+                    width="1440" 
                     height="720"
-                    decoding="async"
                   />
               </picture>
                
