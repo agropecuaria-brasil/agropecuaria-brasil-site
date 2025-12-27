@@ -84,8 +84,8 @@ const OffersCarousel: React.FC = () => {
                         alt={product.name} 
                         className="max-h-full max-w-full object-contain" 
                         loading="lazy"
-                        width="350"
-                        height="350"
+                        width="250"
+                        height="250"
                         decoding="async"
                       />
                     </div>

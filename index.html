@@ -27,10 +27,10 @@
     <!-- Título Otimizado para SEO -->
     <title>Agropecuária Brasil | Pet Shop, Rações e Produtos Rurais em São Carlos</title>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts com display=swap para evitar Render Blocking -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (Mantido via CDN para simplificar setup local) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -61,17 +61,18 @@
         }
     </script>
     
-    <!-- CSS FIX PARA GTM: Garante que cliques em botões sejam capturados no elemento pai -->
+    <!-- CSS FIX PARA GTM E CLS -->
     <style>
-        /* "Nuclear Option": Ignora cliques em QUALQUER filho de um elemento com esta classe. 
-           Isso força o event.target a ser o botão pai, garantindo que o Click Text não seja undefined. */
+        /* "Nuclear Option" para GTM clicks */
         .click-fix > * {
             pointer-events: none !important;
         }
-        /* CLS Fix: Garante altura mínima para imagens antes do carregamento */
+        /* CLS Fix: Define aspect-ratios padrão para imagens */
         img {
             font-size: 0;
             display: block;
+            height: auto; 
+            max-width: 100%;
         }
     </style>
 

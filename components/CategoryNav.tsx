@@ -73,7 +73,6 @@ const CategoryNav: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-12 relative">
         
-        {/* Adicionado H2 oculto visualmente para estrutura semântica correta (SEO) */}
         <h2 className="sr-only">Categorias de Produtos</h2>
 
         <button 
@@ -84,7 +83,8 @@ const CategoryNav: React.FC = () => {
           <ChevronLeft size={24} />
         </button>
 
-        <div className="overflow-hidden py-4 -my-4">
+        {/* CLS FIX: min-height-[160px] reserva o espaço exato dos cards para evitar pulo de layout */}
+        <div className="overflow-hidden py-4 -my-4 min-h-[160px]">
           <div 
             className="flex transition-transform duration-700 ease-in-out"
             style={{ 
@@ -97,14 +97,13 @@ const CategoryNav: React.FC = () => {
                 className="flex-shrink-0 px-2 box-border select-none"
                 style={{ width: `${100 / itemsPerPage}%` }}
               >
-                <div className="bg-white rounded-2xl py-6 px-2 text-center transition-all duration-300 border-2 border-transparent cursor-pointer shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:border-[#E5C808] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(36,144,44,0.15)] h-full flex flex-col items-center justify-center group/card">
+                <div className="bg-white rounded-2xl py-6 px-2 text-center transition-all duration-300 border-2 border-transparent cursor-pointer shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:border-[#E5C808] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(36,144,44,0.15)] h-full min-h-[140px] flex flex-col items-center justify-center group/card">
                   <div 
                      className="pointer-events-none w-[64px] h-[64px] bg-[#E9F5EC] rounded-full flex items-center justify-center mb-3 text-[#24902C] transition-colors duration-300 group-hover/card:bg-[#24902C] group-hover/card:text-white"
                      style={{ pointerEvents: 'none' }}
                   >
                     <cat.icon size={32} />
                   </div>
-                  {/* Mudado de h3 para span para evitar excesso de headings sem seção */}
                   <span 
                     className="pointer-events-none font-bold text-[#2C3E50] font-sans text-sm md:text-base leading-tight block"
                     style={{ pointerEvents: 'none' }}
