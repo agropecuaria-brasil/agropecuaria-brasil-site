@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MapPin, Clock, Phone } from 'lucide-react';
 import Button from './Button';
@@ -52,7 +51,7 @@ const AboutPage: React.FC = () => {
                </div>
             </div>
             <div className="mt-10">
-               <Button variant="whatsapp" fullWidth className="md:w-auto py-4 text-lg shadow-lg" onClick={() => openModal("Olá, gostaria de saber como chegar na loja física.")}>
+               <Button variant="whatsapp" fullWidth className="md:w-auto py-4 text-lg shadow-lg" onClick={() => openModal("Olá, gostaria de saber como chegar na loja física.", 'whatsapp_pagina_sobre')}>
                  Falar no WhatsApp
                </Button>
             </div>

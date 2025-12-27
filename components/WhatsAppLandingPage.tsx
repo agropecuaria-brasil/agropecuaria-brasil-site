@@ -39,9 +39,9 @@ const WhatsAppLandingPage: React.FC<WhatsAppLandingPageProps> = ({ source, title
     let messageTemplate = '';
     
     if (source === 'meta_ads') {
-      messageTemplate = `Olá! Me chamo ${formData.name}. Vim de um anúncio do META e preciso de atendimento _(NÂO APAGUE ESSA MENSAGEM PARA O CORRETO ATENDIMENTO)_`;
+      messageTemplate = `Olá! Me chamo ${formData.name}. Vim de um anúncio do META e preciso de atendimento _(NÃO APAGUE essa mensagem para o correto atendimento)_`;
     } else {
-      messageTemplate = `Olá! Me chamo ${formData.name}. Vim de um anúncio do Google e preciso de atendimento _(NÂO APAGUE ESSA MENSAGEM PARA O CORRETO ATENDIMENTO)_`;
+      messageTemplate = `Olá! Me chamo ${formData.name}. Vim de um anúncio do Google e preciso de atendimento _(NÃO APAGUE essa mensagem para o correto atendimento)_`;
     }
 
     // 1. Enviar para Google Sheets

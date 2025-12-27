@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MapPin, Clock, Phone } from 'lucide-react';
 import Button from './Button';
@@ -83,7 +82,7 @@ const VisitUs: React.FC = () => {
             <div className="mt-10">
                <Button 
                  variant="whatsapp" 
-                 onClick={() => openModal("Olá, gostaria de saber como chegar na loja física.")}
+                 onClick={() => openModal("Olá, gostaria de saber como chegar na loja física.", 'whatsapp_visite_nos_loja')}
                  className="w-full md:w-auto py-4 px-8 text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all"
                >
                  Falar no WhatsApp

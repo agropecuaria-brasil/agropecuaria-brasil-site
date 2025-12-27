@@ -112,7 +112,7 @@ export interface LeadData {
   email: string;
   phone: string;
   message?: string;
-  source: 'newsletter' | 'whatsapp_modal' | 'contact_form' | 'meta_ads' | 'google_ads';
+  source: string; // Alterado de união de strings para string genérica para permitir rastreamento dinâmico
   sheetName?: string;
   date: string;
   time: string;

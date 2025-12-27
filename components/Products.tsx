@@ -68,7 +68,7 @@ const Products: React.FC = () => {
                         categories: ['Categoria'],
                         price: 0,
                         image: item.image
-                      })}
+                      }, 'whatsapp_vitrine_produtos')}
                       // Acessibilidade: Botão com área de toque mínima de 44px e contraste verde escuro
                       className="gtm-btn-product-consult text-[#1e7a25] font-bold text-sm hover:underline flex items-center gap-1 group/btn click-fix min-h-[48px] w-full"
                       data-gtm-label={`Consultar ${item.title}`}

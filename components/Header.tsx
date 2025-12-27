@@ -137,7 +137,7 @@ const Header: React.FC = () => {
 
             <div className="flex items-center">
                <button 
-                 onClick={() => openModal()}
+                 onClick={() => openModal(undefined, 'whatsapp_header_orcamento')}
                  className="gtm-btn-header-budget flex items-center justify-center px-6 py-2.5 rounded-full bg-[#24902C] text-white font-semibold hover:bg-[#1e7a25] transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 click-fix"
                >
                   <span className="flex items-center gap-2 pointer-events-none">
@@ -201,7 +201,7 @@ const Header: React.FC = () => {
                 )
             ))}
             <button
-              onClick={() => { setIsOpen(false); openModal(); }}
+              onClick={() => { setIsOpen(false); openModal(undefined, 'whatsapp_header_mobile'); }}
               className="gtm-btn-header-budget block w-full text-center bg-[#24902C] text-white font-bold py-3 rounded-lg mt-4 flex items-center justify-center shadow-sm click-fix min-h-[48px]"
             >
               <span className="flex items-center justify-center gap-2 pointer-events-none">

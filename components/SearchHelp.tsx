@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Button from './Button';
 import { useWhatsApp } from '../contexts/WhatsAppContext';
@@ -18,7 +17,7 @@ const SearchHelp: React.FC = () => {
           </p>
           <Button 
             variant="whatsapp"
-            onClick={() => openModal("Olá, não encontrei o que procurava e gostaria de falar com um vendedor.")}
+            onClick={() => openModal("Olá, não encontrei o que procurava e gostaria de falar com um vendedor.", 'whatsapp_ajuda_nao_encontrou')}
           >
             Falar com um vendedor
           </Button>

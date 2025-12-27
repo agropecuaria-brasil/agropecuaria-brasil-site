@@ -132,7 +132,7 @@ const Hero: React.FC = () => {
             <Button 
               variant="whatsapp" 
               className={`w-full sm:w-auto text-lg gap-2 shadow-lg hover:shadow-xl hover:scale-105 transition-all ${styles.whatsappBtn}`}
-              onClick={() => openModal()}
+              onClick={() => openModal(undefined, 'whatsapp_hero_principal')}
             >
               Pedir pelo WhatsApp
             </Button>

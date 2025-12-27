@@ -106,7 +106,7 @@ const PromoBanners: React.FC = () => {
                   
                   <div>
                     <button 
-                       onClick={() => openModal(`Olá, vi o banner "${banner.title}" e gostaria de saber mais!`)}
+                       onClick={() => openModal(`Olá, vi o banner "${banner.title}" e gostaria de saber mais!`, 'whatsapp_promo_banner')}
                        className="gtm-btn-promo-banner inline-flex items-center justify-center px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold text-xs md:text-sm tracking-wide shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 min-h-[44px] click-fix"
                        style={{ 
                          backgroundColor: banner.buttonText === 'CONFIRA' ? '#264788' : '#FFFFFF', 

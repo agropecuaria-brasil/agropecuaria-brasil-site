@@ -9,10 +9,11 @@ interface WhatsAppModalProps {
   onClose: () => void;
   customMessage?: string;
   product?: ProductData;
-  isGroupVip?: boolean; // Nova propriedade
+  isGroupVip?: boolean;
+  source?: string; // Nova prop
 }
 
-const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, customMessage, product, isGroupVip = false }) => {
+const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, customMessage, product, isGroupVip = false, source }) => {
   const { settings } = useContent();
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
   const [isLoading, setIsLoading] = useState(false);
@@ -38,12 +39,16 @@ const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, customMe
     e.preventDefault();
     setIsLoading(true);
 
+    // Define a origem final. Se for VIP, força 'newsletter' (ou mantém a lógica anterior), 
+    // caso contrário usa a source passada ou fallback para 'whatsapp_modal'
+    const finalSource = isGroupVip ? 'newsletter' : (source || 'whatsapp_modal');
+
     // 1. Configurar dados para envio
     const leadData: LeadData = {
       ...formData,
       date: new Date().toLocaleDateString('pt-BR'),
       time: new Date().toLocaleTimeString('pt-BR'),
-      source: (isGroupVip ? 'newsletter' : 'whatsapp_modal') as LeadData['source'],
+      source: finalSource,
       // Define a aba da planilha baseado no tipo de modal
       sheetName: isGroupVip ? 'Grupo VIP Leads' : 'WhatsApp Leads', 
       message: isGroupVip 
@@ -70,6 +75,10 @@ const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, customMe
           const baseMessage = customMessage || `Olá! Me chamo ${formData.name}. Vim do site e preciso de atendimento.`;
           finalMessage = `${baseMessage}`;
         }
+
+        // Adiciona o sufixo invisível no site, mas visível na mensagem do WhatsApp
+        finalMessage += " _(NÃO APAGUE essa mensagem para o correto atendimento)_";
+
         const encodedMessage = encodeURIComponent(finalMessage);
         window.open(`https://wa.me/${settings.whatsappGlobal}?text=${encodedMessage}`, '_blank');
       }
@@ -85,7 +94,13 @@ const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, customMe
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
       <div className="bg-white p-8 rounded-2xl w-[90%] max-w-md relative shadow-2xl">
-        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-[#E5C808]"><X size={24} /></button>
+        <button 
+          onClick={onClose} 
+          className="absolute top-4 right-4 text-gray-400 hover:text-[#E5C808] min-w-[44px] min-h-[44px] flex items-center justify-center"
+          aria-label="Fechar modal"
+        >
+          <X size={24} />
+        </button>
 
         <div className="text-center mb-6 font-bold text-xl text-[#264788]">
           {isGroupVip ? 'Entrar no Grupo VIP' : 'Iniciar Atendimento'}
@@ -136,7 +151,7 @@ const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, customMe
 
           <button 
             type="submit" disabled={isLoading}
-            className="w-full py-4 text-white rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg transform active:scale-95 transition-all mt-2 bg-[#24902C] hover:bg-[#1e7a25]"
+            className="w-full py-4 text-white rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg transform active:scale-95 transition-all mt-2 bg-[#24902C] hover:bg-[#1e7a25] min-h-[48px]"
           >
              {/* GTM Fix: pointer-events-none para garantir leitura do texto do botão */}
              <span className="pointer-events-none flex items-center gap-2 justify-center w-full">

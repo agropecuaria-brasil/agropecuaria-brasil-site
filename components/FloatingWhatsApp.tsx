@@ -19,7 +19,7 @@ const FloatingWhatsApp: React.FC = () => {
 
   return (
     <button
-      onClick={() => openModal()}
+      onClick={() => openModal(undefined, 'whatsapp_flutuante')}
       className="gtm-btn-floating-whatsapp fixed bottom-6 right-6 z-40 group flex items-center gap-3 bg-[#E5C808] text-[#264788] pl-3 pr-6 py-3 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_10px_25px_rgba(229,200,8,0.4)] transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 cursor-pointer border-none outline-none font-sans min-h-[56px] animate-float hover:animate-none click-fix"
       aria-label="Chama no WhatsApp"
       data-gtm-id="floating-whatsapp"

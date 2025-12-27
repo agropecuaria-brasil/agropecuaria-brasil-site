@@ -110,7 +110,7 @@ const OffersCarousel: React.FC = () => {
                         <span className="block text-2xl font-extrabold text-[#1e7a25] mb-4">R$ {product.price.toFixed(2).replace('.', ',')}</span>
                         
                         <button 
-                          onClick={() => openModal(product)} 
+                          onClick={() => openModal(product, 'whatsapp_carrossel_ofertas')} 
                           // Acessibilidade: Botão com texto escuro para contraste no fundo transparente/branco e hover acessível
                           className="gtm-btn-offer-buy w-full py-4 border-2 border-gray-200 rounded-xl font-bold text-[#2C3E50] hover:bg-[#1e7a25] hover:border-[#1e7a25] hover:text-white transition-all flex items-center justify-center click-fix min-h-[48px]"
                           data-gtm-label="Compre Agora"
