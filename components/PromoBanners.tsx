@@ -13,13 +13,20 @@ const PromoBanners: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           {promoBanners.map((banner, index) => {
-            // Se for "Apenas Imagem", o banner inteiro vira um link (âncora)
+            // Se for "Apenas Imagem", o banner inteiro vira um link
             if (banner.onlyImage) {
+              const linkUrl = banner.link || '#';
+              // Verifica se é uma âncora interna (#) para decidir se abre em nova aba
+              const isAnchor = linkUrl.startsWith('#');
+              const target = isAnchor ? '_self' : '_blank';
+
               return (
                 <a 
                   key={index}
-                  href={banner.link || '#'}
-                  className="relative h-64 md:h-72 rounded-3xl overflow-hidden shadow-lg group isolate block w-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  href={linkUrl}
+                  target={target}
+                  rel={!isAnchor ? "noopener noreferrer" : undefined}
+                  className="relative h-64 md:h-72 rounded-3xl overflow-hidden shadow-lg group isolate block w-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                   style={{ backgroundColor: banner.bgColor }}
                   aria-label={banner.title || "Banner Promocional"}
                 >

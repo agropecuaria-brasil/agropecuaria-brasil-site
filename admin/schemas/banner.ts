@@ -25,6 +25,7 @@ export default {
       name: 'bgColor',
       title: 'Cor de Fundo',
       type: 'string',
+      description: 'Escolha uma das cores da marca ou fundo transparente.',
       options: {
         list: [
           { title: 'Verde (#24902C)', value: '#24902C' },
@@ -51,14 +52,18 @@ export default {
     },
     {
       name: 'link',
-      title: 'Link / Âncora (Apenas se for "Apenas Imagem")',
-      type: 'string',
-      description: 'Ex: #ofertas, #produtos ou uma URL completa.',
-      initialValue: '#ofertas'
+      title: 'Link de Destino',
+      type: 'url',
+      description: 'Cole a URL completa (ex: https://google.com) ou use âncoras (ex: #ofertas). Se for URL externa, abrirá em nova aba.',
+      validation: (Rule: any) => Rule.uri({
+        scheme: ['http', 'https', 'mailto', 'tel'],
+        allowRelative: true 
+      })
     },
     {
       name: 'onlyImage',
-      title: 'Apenas Imagem? (Sem texto/botão WhatsApp)',
+      title: 'Apenas Imagem? (Banner clicável)',
+      description: 'Se ativado, remove texto e botão WhatsApp. O banner inteiro vira um link para a URL acima.',
       type: 'boolean',
       initialValue: false
     }
