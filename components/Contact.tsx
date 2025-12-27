@@ -18,7 +18,7 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           <div>
             <div className="mb-6 flex items-center">
-               {settings.logoFooter?.url ? (
+               {settings.logoFooter?.url && (
                  <img 
                    src={settings.logoFooter.url} 
                    alt="Agropecuária Brasil" 
@@ -27,8 +27,6 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
                    height="80"
                    loading="lazy"
                  />
-               ) : (
-                 <span className="text-xl font-bold text-white tracking-tighter">Agropecuária Brasil</span>
                )}
             </div>
             

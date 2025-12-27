@@ -23,8 +23,18 @@ export default {
     },
     {
       name: 'bgColor',
-      title: 'Cor de Fundo (Hex)',
+      title: 'Cor de Fundo',
       type: 'string',
+      options: {
+        list: [
+          { title: 'Verde (#24902C)', value: '#24902C' },
+          { title: 'Azul (#264788)', value: '#264788' },
+          { title: 'Amarelo (#E5C808)', value: '#E5C808' },
+          { title: 'Branco (#FFFFFF)', value: '#FFFFFF' },
+          { title: 'Sem Cor (Transparente)', value: 'transparent' }
+        ],
+        layout: 'radio'
+      },
       initialValue: '#24902C'
     },
     {
@@ -41,13 +51,14 @@ export default {
     },
     {
       name: 'link',
-      title: 'Link / Âncora',
+      title: 'Link / Âncora (Apenas se for "Apenas Imagem")',
       type: 'string',
+      description: 'Ex: #ofertas, #produtos ou uma URL completa.',
       initialValue: '#ofertas'
     },
     {
       name: 'onlyImage',
-      title: 'Apenas Imagem?',
+      title: 'Apenas Imagem? (Sem texto/botão WhatsApp)',
       type: 'boolean',
       initialValue: false
     }

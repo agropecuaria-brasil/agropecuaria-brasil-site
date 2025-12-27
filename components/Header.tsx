@@ -97,17 +97,15 @@ const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="hidden md:flex justify-between items-center h-full">
             
-            {/* Logo */}
+            {/* Logo Desktop */}
             <div className="flex-shrink-0 h-full py-2 flex items-center">
                <Link to="/" className="h-full flex items-center" aria-label="Ir para página inicial">
-                 {settings.logoHeader?.url ? (
+                 {settings.logoHeader?.url && (
                    <img 
                      src={settings.logoHeader.url} 
                      alt="Logo Agropecuária Brasil" 
                      className="h-full w-auto object-contain max-h-16"
                    />
-                 ) : (
-                   <span className="text-2xl font-bold text-[#24902C] tracking-tighter">Agropecuária Brasil</span>
                  )}
                </Link>
             </div>
@@ -151,16 +149,15 @@ const Header: React.FC = () => {
           </div>
 
           <div className="md:hidden flex justify-between items-center h-full">
+            {/* Logo Mobile */}
             <div className="flex items-center h-full py-3">
               <Link to="/" className="h-full flex items-center" aria-label="Ir para página inicial">
-                 {settings.logoHeader?.url ? (
+                 {settings.logoHeader?.url && (
                    <img 
                      src={settings.logoHeader.url} 
                      alt="Logo" 
                      className="h-full w-auto object-contain max-h-12"
                    />
-                 ) : (
-                   <span className="text-lg font-bold text-[#24902C] tracking-tighter">Agropecuária Brasil</span>
                  )}
               </Link>
             </div>
