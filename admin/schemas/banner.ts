@@ -25,7 +25,7 @@ export default {
       name: 'bgColor',
       title: 'Cor de Fundo',
       type: 'string',
-      description: 'Escolha uma das cores da marca ou fundo transparente.',
+      description: 'Escolha estritamente uma das cores da marca ou fundo transparente.',
       options: {
         list: [
           { title: 'Verde (#24902C)', value: '#24902C' },
@@ -36,7 +36,8 @@ export default {
         ],
         layout: 'radio'
       },
-      initialValue: '#24902C'
+      initialValue: '#24902C',
+      validation: (Rule: any) => Rule.required()
     },
     {
       name: 'textColor',
@@ -53,12 +54,8 @@ export default {
     {
       name: 'link',
       title: 'Link de Destino',
-      type: 'url',
-      description: 'Cole a URL completa (ex: https://google.com) ou use âncoras (ex: #ofertas). Se for URL externa, abrirá em nova aba.',
-      validation: (Rule: any) => Rule.uri({
-        scheme: ['http', 'https', 'mailto', 'tel'],
-        allowRelative: true 
-      })
+      type: 'string',
+      description: 'Cole a URL (ex: google.com) ou âncora (ex: #ofertas). O site corrigirá automaticamente para abrir em nova aba se for externo.',
     },
     {
       name: 'onlyImage',

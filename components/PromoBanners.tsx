@@ -7,27 +7,39 @@ const PromoBanners: React.FC = () => {
   const { openModal } = useWhatsApp();
   const { promoBanners } = useContent();
 
+  // Função auxiliar para tratar links
+  const getSafeLink = (link: string) => {
+    if (!link) return '#';
+    // Se for âncora (#) ou caminho relativo (/), mantém como está
+    if (link.startsWith('#') || link.startsWith('/')) return link;
+    // Se já tiver protocolo, mantém
+    if (link.match(/^https?:\/\//)) return link;
+    // Se não tiver protocolo, assume que é site externo e adiciona https://
+    return `https://${link}`;
+  };
+
   return (
     <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           {promoBanners.map((banner, index) => {
+            const isTransparent = banner.bgColor === 'transparent';
+            
             // Se for "Apenas Imagem", o banner inteiro vira um link
             if (banner.onlyImage) {
-              const linkUrl = banner.link || '#';
-              // Verifica se é uma âncora interna (#) para decidir se abre em nova aba
-              const isAnchor = linkUrl.startsWith('#');
-              const target = isAnchor ? '_self' : '_blank';
+              const safeLink = getSafeLink(banner.link || '#');
+              const isExternal = safeLink.startsWith('http');
+              const target = isExternal ? '_blank' : '_self';
 
               return (
                 <a 
                   key={index}
-                  href={linkUrl}
+                  href={safeLink}
                   target={target}
-                  rel={!isAnchor ? "noopener noreferrer" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
                   className="relative h-64 md:h-72 rounded-3xl overflow-hidden shadow-lg group isolate block w-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-                  style={{ backgroundColor: banner.bgColor }}
+                  style={{ backgroundColor: isTransparent ? 'transparent' : banner.bgColor }}
                   aria-label={banner.title || "Banner Promocional"}
                 >
                   <div className="absolute inset-0 w-full h-full z-0">
@@ -46,11 +58,18 @@ const PromoBanners: React.FC = () => {
             }
 
             // Se NÃO for "Apenas Imagem", mantém o layout com texto e botão WhatsApp
+            
+            // Corrige o gradiente: Se for transparente, não aplica gradiente inválido.
+            // Se for cor sólida, aplica o gradiente de legibilidade.
+            const gradientStyle = isTransparent 
+              ? {} 
+              : { background: `linear-gradient(to right, ${banner.bgColor} 10%, ${banner.bgColor}90 35%, transparent 70%)` };
+
             return (
               <div 
                 key={index}
                 className="relative h-64 md:h-72 rounded-3xl overflow-hidden shadow-lg group isolate"
-                style={{ backgroundColor: banner.bgColor }}
+                style={{ backgroundColor: isTransparent ? 'transparent' : banner.bgColor }}
               >
                 <div className="absolute inset-0 w-full h-full z-0">
                    <img 
@@ -63,11 +82,11 @@ const PromoBanners: React.FC = () => {
                      decoding="async"
                    />
                 </div>
+                
+                {/* Overlay de Gradiente (Apenas se não for transparente) */}
                 <div 
                   className="absolute inset-0 z-10 pointer-events-none"
-                  style={{ 
-                    background: `linear-gradient(to right, ${banner.bgColor} 10%, ${banner.bgColor}90 35%, transparent 70%)` 
-                  }}
+                  style={gradientStyle}
                 ></div>
 
                 <div className="relative z-20 h-full flex flex-col justify-center p-8 md:p-10 max-w-[65%]">
