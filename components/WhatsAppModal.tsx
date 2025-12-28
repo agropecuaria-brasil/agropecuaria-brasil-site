@@ -122,7 +122,11 @@ const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, customMe
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        {/* AJUSTE SOLICITADO: Classes diferentes para o Form do VIP vs Normal */}
+        <form 
+          onSubmit={handleSubmit} 
+          className={isGroupVip ? "flex flex-col gap-5 vip-group-form-container" : "space-y-4 standard-form-container"}
+        >
           <div>
             <label className="block text-xs font-bold text-gray-500 mb-1 uppercase">Nome Completo</label>
             <input 
@@ -153,7 +157,7 @@ const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, customMe
             type="submit" disabled={isLoading}
             className={`w-full py-4 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg transform active:scale-95 transition-all mt-2 min-h-[48px] ${
               isGroupVip 
-                ? "gtm-btn-vip-submit bg-[#E5C808] text-[#264788] hover:bg-[#d4b907]" 
+                ? "gtm-btn-vip-submit bg-[#E5C808] text-[#264788] hover:bg-[#d4b907] ring-2 ring-offset-2 ring-[#E5C808]/50" 
                 : "gtm-btn-whatsapp-submit bg-[#24902C] text-white hover:bg-[#1e7a25]"
             }`}
           >
