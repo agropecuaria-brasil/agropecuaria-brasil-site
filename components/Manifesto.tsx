@@ -15,19 +15,20 @@ const Manifesto: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           
           <div className="lg:w-1/2 w-full">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[400px] md:h-[500px] group bg-gray-100">
+            {/* CLS FIX: aspect-[4/5] reserva o espaço vertical antes da imagem carregar */}
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl group bg-gray-100 aspect-[4/5] w-full max-w-lg mx-auto lg:max-w-none">
               {settings.aboutImage ? (
                 <img 
                   src={settings.aboutImage} 
                   alt="Agropecuária Brasil - Quem Somos" 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 absolute inset-0"
                   loading="lazy"
                   width="800"
                   height="1000"
                   decoding="async"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-400 p-10 text-center">
+                <div className="w-full h-full flex items-center justify-center text-gray-400 p-10 text-center absolute inset-0">
                    <span>Imagem "Quem Somos" não configurada</span>
                 </div>
               )}

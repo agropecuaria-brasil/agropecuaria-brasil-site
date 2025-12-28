@@ -40,39 +40,42 @@ export const useContent = () => {
   useEffect(() => {
     const fetchSanityData = async () => {
       try {
-        // Otimização EXTREMA para PageSpeed > 90
-        // Redução agressiva de pixels (w=) e qualidade (q=65)
-        // O relatório indicou imagens de 800px sendo usadas em slots de 280px.
+        // ATUALIZAÇÃO DE QUALIDADE (High Definition & Retina Ready)
+        // - Logos: h=200 (para renderizar nítido em 60-80px de altura CSS)
+        // - Hero: w=1920 (Full HD)
+        // - Cards: Dobro do tamanho do slot (ex: slot 300px -> imagem 600px)
+        // - Qualidade: 85% a 95% (Equilíbrio entre nitidez e performance WebP)
         
         const query = `{
           "settings": *[_type == "siteSettings"][0]{
             ...,
             "favicon": favicon.asset->url,
-            // Logos pequenos
-            logoHeader { "url": asset->url + "?auto=format&fm=webp&h=60&q=80" },
-            logoFooter { "url": asset->url + "?auto=format&fm=webp&h=60&q=80" },
+            // Logo: Aumentada para h=200 e q=95 para garantir nitidez total
+            logoHeader { "url": asset->url + "?auto=format&fm=webp&h=200&q=95" },
+            logoFooter { "url": asset->url + "?auto=format&fm=webp&h=200&q=95" },
             
-            "aboutImage": aboutImage.asset->url + "?auto=format&fm=webp&w=500&q=65",
+            "aboutImage": aboutImage.asset->url + "?auto=format&fm=webp&w=1000&q=85",
             
             heroSlides[]{
               ...,
-              // Hero: Desktop 1280px (suficiente para telas comuns), Mobile 600px
-              "image": image.asset->url + "?auto=format&fm=webp&w=1280&q=70",
-              "mobileImage": mobileImage.asset->url + "?auto=format&fm=webp&w=600&q=65"
+              // Hero Desktop: Full HD (1920px) com q=85
+              "image": image.asset->url + "?auto=format&fm=webp&w=1920&q=85",
+              // Hero Mobile: 800px (cobre telas maiores) com q=80
+              "mobileImage": mobileImage.asset->url + "?auto=format&fm=webp&w=800&q=80"
             },
             
             showcaseItems[]{
               title,
               description,
               icon,
-              // Reduzido para w=300 (Grid de 4 colunas não precisa mais que isso)
-              "image": image.asset->url + "?auto=format&fm=webp&w=300&h=200&fit=crop&q=65"
+              // Vitrine: 600x400 (2x densidade para card de 300px) - q=85
+              "image": image.asset->url + "?auto=format&fm=webp&w=600&h=400&fit=crop&q=85"
             },
             
             instagramPosts[]{
               link,
               caption,
-              "image": image.asset->url + "?auto=format&fm=webp&w=250&h=250&fit=crop&q=65"
+              "image": image.asset->url + "?auto=format&fm=webp&w=500&h=500&fit=crop&q=80"
             },
             announcements[]{
               text,
@@ -82,8 +85,8 @@ export const useContent = () => {
             featuredProducts[]->{
               ...,
               "id": _id,
-              // Produto: Quadrado de 250px é suficiente para card
-              "image": image.asset->url + "?auto=format&fm=webp&w=250&h=250&fit=fill&bg=ffffff&q=65"
+              // Produto: 500x500 (2x densidade para card de 250px) - q=85
+              "image": image.asset->url + "?auto=format&fm=webp&w=500&h=500&fit=fill&bg=ffffff&q=85"
             },
 
             featuredTestimonials[]->{
@@ -93,25 +96,27 @@ export const useContent = () => {
               rating,
               "date": dateText,
               source,
-              "avatar": avatar.asset->url + "?auto=format&fm=webp&w=64&h=64&fit=crop&q=65"
+              "avatar": avatar.asset->url + "?auto=format&fm=webp&w=128&h=128&fit=crop&q=85"
             }
           },
           
           "allProducts": *[_type == "product" && active == true] | order(_createdAt desc)[0..15]{
             ...,
             "id": _id,
-            "image": image.asset->url + "?auto=format&fm=webp&w=250&h=250&fit=fill&bg=ffffff&q=65"
+            // Produto: 500x500 (2x densidade) - q=85
+            "image": image.asset->url + "?auto=format&fm=webp&w=500&h=500&fit=fill&bg=ffffff&q=85"
           },
           
           "promoBanners": *[_type == "promoBanner"]{
              ...,
-             // Banners: Reduzido para 600px (já que em desktop ocupam metade da tela)
-             "bgImage": bgImage.asset->url + "?auto=format&fm=webp&w=600&q=65"
+             // Banners: 1200px para garantir nitidez em desktops maiores
+             "bgImage": bgImage.asset->url + "?auto=format&fm=webp&w=1200&q=85"
           },
           
           "brands": *[_type == "brand"] | order(name asc){
              name,
-             "logo": logo.asset->url + "?auto=format&fm=webp&w=150&q=75"
+             // Logos marcas: 300px e q=90
+             "logo": logo.asset->url + "?auto=format&fm=webp&w=300&q=90"
           },
           
           "allTestimonials": *[_type == "testimonial"] | order(_createdAt desc){
@@ -121,7 +126,7 @@ export const useContent = () => {
              rating,
              "date": dateText,
              source,
-             "avatar": avatar.asset->url + "?auto=format&fm=webp&w=64&h=64&fit=crop&q=65"
+             "avatar": avatar.asset->url + "?auto=format&fm=webp&w=128&h=128&fit=crop&q=85"
           }
         }`;
         

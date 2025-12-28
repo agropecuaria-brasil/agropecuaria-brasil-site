@@ -36,14 +36,15 @@ const Products: React.FC = () => {
             const Icon = iconMap[item.icon] || Dog;
             return (
               <div key={idx} className="group relative rounded-2xl overflow-hidden shadow-lg bg-white h-full flex flex-col border border-gray-100">
-                <div className="h-48 overflow-hidden relative bg-gray-100">
+                {/* CLS FIX: aspect-[3/2] corresponde a w=300 h=200 da query do Sanity */}
+                <div className="aspect-[3/2] overflow-hidden relative bg-gray-100">
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors z-10"></div>
                   <img 
                     src={item.image} 
                     alt={item.title} 
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 absolute inset-0"
                     loading="lazy"
-                    width="300" // Reduzido para corresponder à query do Sanity
+                    width="300"
                     height="200"
                     decoding="async"
                   />

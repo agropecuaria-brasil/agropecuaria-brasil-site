@@ -83,8 +83,8 @@ const CategoryNav: React.FC = () => {
           <ChevronLeft size={24} />
         </button>
 
-        {/* CLS FIX: min-height-[160px] reserva o espaço exato dos cards para evitar pulo de layout */}
-        <div className="overflow-hidden py-4 -my-4 min-h-[160px]">
+        {/* CLS FIX: min-height-[180px] aumentado para garantir que não haja cortes ou pulos */}
+        <div className="overflow-hidden py-4 -my-4 min-h-[180px]">
           <div 
             className="flex transition-transform duration-700 ease-in-out"
             style={{ 
@@ -97,19 +97,22 @@ const CategoryNav: React.FC = () => {
                 className="flex-shrink-0 px-2 box-border select-none"
                 style={{ width: `${100 / itemsPerPage}%` }}
               >
-                <div className="bg-white rounded-2xl py-6 px-2 text-center transition-all duration-300 border-2 border-transparent cursor-pointer shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:border-[#E5C808] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(36,144,44,0.15)] h-full min-h-[140px] flex flex-col items-center justify-center group/card">
+                <div className="bg-white rounded-2xl py-6 px-2 text-center transition-all duration-300 border-2 border-transparent cursor-pointer shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:border-[#E5C808] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(36,144,44,0.15)] h-full min-h-[160px] flex flex-col items-center justify-center group/card">
                   <div 
                      className="pointer-events-none w-[64px] h-[64px] bg-[#E9F5EC] rounded-full flex items-center justify-center mb-3 text-[#24902C] transition-colors duration-300 group-hover/card:bg-[#24902C] group-hover/card:text-white"
                      style={{ pointerEvents: 'none' }}
                   >
                     <cat.icon size={32} />
                   </div>
-                  <span 
-                    className="pointer-events-none font-bold text-[#2C3E50] font-sans text-sm md:text-base leading-tight block"
-                    style={{ pointerEvents: 'none' }}
-                  >
-                    {cat.name}
-                  </span>
+                  {/* CLS FIX: min-h-[40px] para o texto e leading-tight para evitar pulos quando a fonte carrega */}
+                  <div className="min-h-[40px] flex items-center justify-center w-full px-1">
+                    <span 
+                        className="pointer-events-none font-bold text-[#2C3E50] font-sans text-sm md:text-base leading-tight block w-full break-words"
+                        style={{ pointerEvents: 'none' }}
+                    >
+                        {cat.name}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}
