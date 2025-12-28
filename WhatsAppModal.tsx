@@ -151,7 +151,11 @@ const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose, customMe
 
           <button 
             type="submit" disabled={isLoading}
-            className="w-full py-4 text-white rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg transform active:scale-95 transition-all mt-2 bg-[#24902C] hover:bg-[#1e7a25] min-h-[48px]"
+            className={`w-full py-4 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg transform active:scale-95 transition-all mt-2 min-h-[48px] ${
+              isGroupVip 
+                ? "gtm-btn-vip-submit bg-[#E5C808] text-[#264788] hover:bg-[#d4b907]" 
+                : "gtm-btn-whatsapp-submit bg-[#24902C] text-white hover:bg-[#1e7a25]"
+            }`}
           >
              {/* GTM Fix: pointer-events-none para garantir leitura do texto do botão */}
              <span className="pointer-events-none flex items-center gap-2 justify-center w-full">
