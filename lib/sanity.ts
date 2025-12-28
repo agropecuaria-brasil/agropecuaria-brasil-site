@@ -5,7 +5,7 @@ import { LeadData } from '../types';
 export const sanityClient = createClient({
   projectId: 'qrklcww2', 
   dataset: 'production',
-  useCdn: true, 
+  useCdn: false, // ALTERADO: False para evitar cache e mostrar atualizações na hora
   apiVersion: '2024-03-20',
   ignoreBrowserTokenWarning: true, // Evita avisos no console sobre token em ambiente browser
   perspective: 'published', // Garante que apenas conteúdo publicado seja buscado
