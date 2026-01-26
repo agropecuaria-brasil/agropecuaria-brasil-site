@@ -89,15 +89,22 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
               <li className="flex items-start gap-3">
                 <Clock className="text-[#E5C808] mt-1 shrink-0" size={18} />
                 <div className="text-gray-100 text-sm">
-                  <p className="font-semibold text-white">Segunda a Sábado</p>
-                  <p>{contactInfo.openingHoursWeek}</p>
+                  <p className="font-semibold text-white">Segunda a Sexta</p>
+                  <p>{contactInfo.openingHoursMonFri}</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Clock className="text-[#E5C808] mt-1 shrink-0" size={18} />
+                <div className="text-gray-100 text-sm">
+                  <p className="font-semibold text-white">Sábado</p>
+                  <p>{contactInfo.openingHoursSat}</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="text-[#E5C808] mt-1 shrink-0" size={18} />
                 <div className="text-gray-100 text-sm">
                   <p className="font-semibold text-white">Domingo</p>
-                  <p>{contactInfo.openingHoursWeekend}</p>
+                  <p>{contactInfo.openingHoursSun}</p>
                 </div>
               </li>
             </ul>

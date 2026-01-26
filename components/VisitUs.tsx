@@ -47,10 +47,13 @@ const VisitUs: React.FC = () => {
                  <div>
                     <h4 className="font-bold text-[#2C3E50] text-lg mb-1">Horários</h4>
                     <p className="text-gray-600 text-sm md:text-base">
-                      Segunda a Sábado: {contactInfo.openingHoursWeek}
+                      <span className="font-semibold text-[#264788]">Seg-Sex:</span> {contactInfo.openingHoursMonFri}
+                    </p>
+                    <p className="text-gray-600 text-sm md:text-base">
+                      <span className="font-semibold text-[#264788]">Sábado:</span> {contactInfo.openingHoursSat}
                     </p>
                     <p className="text-gray-500 text-sm md:text-base">
-                      Domingo: {contactInfo.openingHoursWeekend}
+                      <span className="font-semibold text-[#264788]">Domingo:</span> {contactInfo.openingHoursSun}
                     </p>
                  </div>
                </div>

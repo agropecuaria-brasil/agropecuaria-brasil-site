@@ -23,8 +23,9 @@ const defaultData: ContentContextType = {
       phonePrimary: '',
       phoneSecondary: '',
       email: '',
-      openingHoursWeek: '',
-      openingHoursWeekend: ''
+      openingHoursMonFri: '',
+      openingHoursSat: '',
+      openingHoursSun: ''
     }
   },
   announcements: [],

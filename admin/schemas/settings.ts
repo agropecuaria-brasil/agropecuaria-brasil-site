@@ -215,8 +215,9 @@ export default {
         { name: 'phonePrimary', title: 'Telefone Principal', type: 'string' },
         { name: 'phoneSecondary', title: 'Telefone Secundário', type: 'string' },
         { name: 'email', title: 'E-mail', type: 'string' },
-        { name: 'openingHoursWeek', title: 'Horário (Seg-Sáb)', type: 'string' },
-        { name: 'openingHoursWeekend', title: 'Horário (Dom)', type: 'string' }
+        { name: 'openingHoursMonFri', title: 'Horário (Segunda a Sexta)', type: 'string' },
+        { name: 'openingHoursSat', title: 'Horário (Sábado)', type: 'string' },
+        { name: 'openingHoursSun', title: 'Horário (Domingo)', type: 'string' }
       ]
     }
   ]

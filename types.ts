@@ -50,8 +50,9 @@ export interface SiteSettings {
     phonePrimary: string;
     phoneSecondary?: string;
     email: string;
-    openingHoursWeek: string;
-    openingHoursWeekend: string;
+    openingHoursMonFri: string;
+    openingHoursSat: string;
+    openingHoursSun: string;
   };
 }
 
