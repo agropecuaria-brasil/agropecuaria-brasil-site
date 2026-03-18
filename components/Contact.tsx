@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useContent } from '../hooks/useContent';
 
@@ -111,9 +111,9 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-gray-300">
-            <p className="text-center md:text-left">
+        <div className="border-t border-white/10 pt-8 flex flex-col items-start gap-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 text-xs text-gray-300">
+            <p className="text-left">
               © 2026 Agropecuária Brasil LTDA - CNPJ: 06.881.706-0001-96 | Todos os direitos reservados.
             </p>
             <span className="hidden md:block text-gray-500">|</span>
@@ -126,10 +126,14 @@ const Contact: React.FC<ContactProps> = ({ onOpenCookieSettings }) => {
             <span className="hidden md:block text-gray-500">|</span>
             <button 
               onClick={onOpenCookieSettings} 
-              className="hover:text-[#E5C808] transition-colors underline decoration-dotted underline-offset-2 min-h-[44px] md:min-h-0"
+              className="hover:text-[#E5C808] transition-colors underline decoration-dotted underline-offset-2 min-h-[44px] md:min-h-0 text-left"
             >
               Preferências de Cookies
             </button>
+          </div>
+
+          <div className="text-[11px] text-gray-300 text-left flex items-center gap-1">
+            Feito com <Heart size={12} className="text-[#E5C808] fill-[#E5C808]" /> por <a href="https://www.lemos83.com.br/?utm_source=agropecuariabrasil" target="_blank" rel="noopener noreferrer" className="hover:text-[#E5C808] transition-colors font-medium ml-0.5">Lemos83 | Digital Marketing Solutions</a>
           </div>
         </div>
       </div>
