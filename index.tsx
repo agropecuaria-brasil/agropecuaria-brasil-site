@@ -7,9 +7,7 @@ if (!rootElement) {
   throw new Error("Could not find root element to mount to");
 }
 
-// Log de depuração para confirmar atualização
-console.log('%c AGROPECUÁRIA BRASIL - VERSÃO ATUALIZADA (v2.2) ', 'background: #24902C; color: #fff; font-size: 14px; padding: 4px; border-radius: 4px;');
-console.log('Build Timestamp: ' + new Date().toISOString());
+console.log('%c MKT&PLAY ', 'background: #C6F058; color: #1E232B; font-size: 14px; font-weight: bold; padding: 4px 8px; border-radius: 4px;');
 
 const root = ReactDOM.createRoot(rootElement);
 root.render(
