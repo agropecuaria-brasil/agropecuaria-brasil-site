@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar      from './components/mkt/Navbar';
 import Hero        from './components/mkt/Hero';
 import Mission     from './components/mkt/Mission';
+import Packs       from './components/mkt/Packs';
 import Methodology from './components/mkt/Methodology';
 import Team        from './components/mkt/Team';
 import Clients     from './components/mkt/Clients';
@@ -14,6 +15,7 @@ export default function App() {
       <Navbar />
       <Hero />
       <Mission />
+      <Packs />
       <Methodology />
       <Team />
       <Clients />

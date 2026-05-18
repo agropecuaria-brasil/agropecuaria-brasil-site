@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, Layers, GitMerge, TrendingUp } from 'lucide-react';
+import { Sprout, Repeat2, BarChart2, Target } from 'lucide-react';
 
 const FADE_UP = {
   initial:     { opacity: 0, y: 40 },
@@ -9,136 +9,139 @@ const FADE_UP = {
   transition:  { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
 };
 
-const STEPS = [
+const PILLARS = [
   {
-    phase: '01',
-    icon:  Search,
-    title: 'Diagnóstico',
-    body:  'Mapeamos profundamente seu negócio, concorrentes, público e ecossistema atual para identificar as oportunidades reais de crescimento e os gargalos que travam seus resultados.',
-    tags:  ['Análise de mercado', 'Benchmark', 'Auditoria digital'],
+    icon:  Sprout,
+    title: 'Pequenas ações',
+    body:  'Marketing de alto impacto não exige grandes explosões. Exige consistência. Executamos pequenas ações com excelência todos os dias.',
   },
   {
-    phase: '02',
-    icon:  Layers,
-    title: 'Curadoria',
-    body:  'Com base no diagnóstico, selecionamos as ferramentas, canais e fornecedores ideais para a sua realidade — descartamos o que não faz sentido e recomendamos o que gera valor real.',
-    tags:  ['Seleção de ferramentas', 'Estratégia de canais', 'Mix de mídia'],
+    icon:  Repeat2,
+    title: 'Feitas todo dia',
+    body:  'Marketing digital é como um ser vivo: não basta criar, é preciso alimentar diariamente. A consistência é o que gera resultados sustentáveis.',
   },
   {
-    phase: '03',
-    icon:  GitMerge,
-    title: 'Integração',
-    body:  'Implementamos e conectamos tudo de forma operacional, garantindo que cada peça do seu marketing trabalhe em sinergia. Sem silos, sem dados perdidos, sem conflito de mensagens.',
-    tags:  ['Setup técnico', 'Automações', 'Fluxos integrados'],
+    icon:  Target,
+    title: 'Com excelência',
+    body:  'Cada ação é pensada estrategicamente. Não fazemos por fazer — fazemos bem-feito, com método e propósito claro para o seu negócio.',
   },
   {
-    phase: '04',
-    icon:  TrendingUp,
-    title: 'Aceleração',
-    body:  'Gerenciamos, otimizamos e escalamos continuamente, com relatórios transparentes e ajustes estratégicos constantes. Crescimento previsível, não sorte.',
-    tags:  ['Gestão contínua', 'Otimização de ROI', 'Relatórios claros'],
+    icon:  BarChart2,
+    title: 'Gerando resultado',
+    body:  'O acúmulo de pequenas ações feitas com excelência resulta em crescimento real, mensurável e sustentável ao longo do tempo.',
   },
 ];
 
 export default function Methodology() {
   return (
-    <section id="metodo" className="py-28 bg-[#1E232B] relative overflow-hidden">
-      <div className="absolute inset-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(198,240,88,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(198,240,88,0.035) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
+    <section id="metodo" className="py-28 bg-[#2A303C] relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C6F058]/20 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-6">
 
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.span
-            {...FADE_UP}
-            className="inline-block text-[#C6F058] text-xs font-semibold tracking-widest uppercase mb-4"
-          >
-            Nossa Abordagem
-          </motion.span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+          <div>
+            <motion.span {...FADE_UP} className="inline-block text-[#C6F058] text-xs font-semibold tracking-widest uppercase mb-4">
+              Nosso Método
+            </motion.span>
 
-          <motion.h2
-            {...FADE_UP}
-            transition={{ ...FADE_UP.transition, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6"
-          >
-            O Método{' '}
-            <span className="text-[#C6F058]">Plug and Play</span>
-          </motion.h2>
+            <motion.div
+              {...FADE_UP}
+              transition={{ ...FADE_UP.transition, delay: 0.1 }}
+              className="mb-6"
+            >
+              <div className="inline-flex items-center gap-3 bg-[#1E232B] border border-[#C6F058]/20 rounded-2xl px-6 py-4 mb-6">
+                <span className="text-[#C6F058] font-extrabold text-4xl tracking-tight">PPC</span>
+                <div className="w-px h-10 bg-white/10" />
+                <div>
+                  <p className="text-white font-bold text-sm">Porção de</p>
+                  <p className="text-white font-bold text-sm">Pequenas Coisas</p>
+                </div>
+              </div>
 
-          <motion.p
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+                Pequenas ações feitas{' '}
+                <span className="text-[#C6F058]">bem-feitas,</span>
+                <br />
+                todos os dias.
+              </h2>
+            </motion.div>
+
+            <motion.p
+              {...FADE_UP}
+              transition={{ ...FADE_UP.transition, delay: 0.2 }}
+              className="text-[#9CA3AF] text-lg leading-relaxed font-light"
+            >
+              Marketing digital é como um ser vivo — não basta apenas criá-lo, é preciso
+              alimentá-lo diariamente. O método PPC consiste em executar pequenas ações
+              de marketing com excelência, de forma consistente e diária, gerando
+              resultados sustentáveis ao longo do tempo.
+            </motion.p>
+          </div>
+
+          {/* Visual PPC ring */}
+          <motion.div
             {...FADE_UP}
-            transition={{ ...FADE_UP.transition, delay: 0.2 }}
-            className="text-[#9CA3AF] text-lg leading-relaxed font-light"
+            transition={{ ...FADE_UP.transition, delay: 0.25 }}
+            className="flex items-center justify-center"
           >
-            Uma metodologia proprietária que transforma a complexidade do marketing digital
-            em crescimento previsível — da estratégia à operacionalização.
-          </motion.p>
+            <div className="relative w-72 h-72">
+              {/* Outer ring */}
+              <div className="absolute inset-0 rounded-full border-2 border-[#C6F058]/15 animate-[spin_30s_linear_infinite]" />
+              <div className="absolute inset-4 rounded-full border border-dashed border-[#C6F058]/10" />
+
+              {/* Center */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                <span className="text-[#C6F058] font-extrabold text-5xl tracking-tight leading-none">PPC</span>
+                <span className="text-white/40 text-xs mt-2 uppercase tracking-widest font-medium">Método Proprietário</span>
+              </div>
+
+              {/* Orbiting labels */}
+              {['WEB', 'CRM', 'MARCA', 'ADS', 'SOCIAL', 'WTSAP'].map((label, i) => {
+                const angle = (i / 6) * 360 - 90;
+                const rad = (angle * Math.PI) / 180;
+                const r = 110;
+                const x = 144 + r * Math.cos(rad);
+                const y = 144 + r * Math.sin(rad);
+                return (
+                  <div
+                    key={label}
+                    className="absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
+                    style={{ left: x, top: y }}
+                  >
+                    <div className="bg-[#1E232B] border border-[#C6F058]/20 rounded-lg px-2 py-1">
+                      <span className="text-[#C6F058] text-[10px] font-bold tracking-wider">{label}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
         </div>
 
-        {/* Steps grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-
-          {/* Connector line (desktop) */}
-          <div className="absolute top-14 left-[calc(12.5%+1rem)] right-[calc(12.5%+1rem)] h-px bg-gradient-to-r from-[#C6F058]/20 via-[#C6F058]/40 to-[#C6F058]/20 hidden lg:block pointer-events-none" />
-
-          {STEPS.map(({ phase, icon: Icon, title, body, tags }, i) => (
+        {/* Pillars */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {PILLARS.map(({ icon: Icon, title, body }, i) => (
             <motion.div
-              key={phase}
+              key={title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.6, delay: i * 0.12, ease: 'easeOut' }}
-              className="group relative bg-[#2A303C] border border-white/5 rounded-2xl p-7 hover:border-[#C6F058]/30 hover:shadow-[0_0_40px_rgba(198,240,88,0.06)] transition-all duration-300 flex flex-col"
+              transition={{ duration: 0.6, delay: i * 0.1, ease: 'easeOut' }}
+              className="group bg-[#1E232B] border border-white/5 rounded-2xl p-7 hover:border-[#C6F058]/25 hover:shadow-[0_0_40px_rgba(198,240,88,0.06)] transition-all duration-300"
             >
-              {/* Phase badge + icon */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="relative w-12 h-12 rounded-xl bg-[#C6F058]/10 flex items-center justify-center group-hover:bg-[#C6F058]/20 transition-colors flex-shrink-0 z-10">
-                  <Icon className="w-5 h-5 text-[#C6F058]" strokeWidth={1.8} />
-                </div>
-                <span className="text-[#C6F058]/40 font-extrabold text-2xl tabular-nums">{phase}</span>
+              <div className="w-11 h-11 rounded-xl bg-[#C6F058]/10 flex items-center justify-center mb-5 group-hover:bg-[#C6F058]/20 transition-colors">
+                <Icon className="w-5 h-5 text-[#C6F058]" strokeWidth={1.8} />
               </div>
-
-              <h3 className="text-white font-bold text-lg mb-3">{title}</h3>
-              <p className="text-[#6B7280] text-sm leading-relaxed font-light flex-1">{body}</p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5 mt-5">
-                {tags.map(tag => (
-                  <span
-                    key={tag}
-                    className="text-[10px] font-semibold text-[#C6F058]/70 bg-[#C6F058]/8 border border-[#C6F058]/15 rounded-full px-2.5 py-1 uppercase tracking-wide"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <h3 className="text-white font-bold text-base mb-3">{title}</h3>
+              <p className="text-[#6B7280] text-sm leading-relaxed font-light">{body}</p>
             </motion.div>
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          {...FADE_UP}
-          transition={{ ...FADE_UP.transition, delay: 0.4 }}
-          className="text-center mt-16"
-        >
-          <p className="text-[#6B7280] text-sm mb-5">
-            Pronto para aplicar o método no seu negócio?
-          </p>
-          <button
-            onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-[#C6F058] text-[#1E232B] px-8 py-3.5 rounded-xl font-bold text-sm hover:bg-[#d4f472] active:scale-95 transition-all shadow-[0_0_30px_rgba(198,240,88,0.2)]"
-          >
-            Quero Simplificar Meu Marketing
-          </button>
-        </motion.div>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C6F058]/20 to-transparent" />
     </section>
   );
 }

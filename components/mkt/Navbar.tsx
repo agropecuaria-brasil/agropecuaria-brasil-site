@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Zap } from 'lucide-react';
 
 const NAV_LINKS = [
-  { label: 'Início',   id: 'inicio' },
-  { label: 'Sobre',    id: 'sobre' },
-  { label: 'Método',   id: 'metodo' },
-  { label: 'Equipe',   id: 'equipe' },
+  { label: 'Início',   id: 'inicio'   },
+  { label: 'Sobre',    id: 'sobre'    },
+  { label: 'Packs',    id: 'packs'    },
+  { label: 'Método',   id: 'metodo'   },
+  { label: 'Equipe',   id: 'equipe'   },
   { label: 'Clientes', id: 'clientes' },
 ];
 
