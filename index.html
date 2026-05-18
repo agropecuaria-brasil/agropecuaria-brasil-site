@@ -3,36 +3,25 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
 
-    <meta name="description" content="Agropecuária Brasil em São Carlos: Rações, Pet Shop, Medicamentos Veterinários e Produtos Rurais. Entrega rápida e o melhor atendimento desde 1997." />
-    <meta name="theme-color" content="#24902C" />
-    <link rel="canonical" href="https://agropecuariabrasil.com.br/" />
+    <meta name="description" content="MKT&Play | Consultores-curadores de soluções de Marketing Digital. Com o método Plug and Play, simplificamos a gestão do seu marketing e conectamos as melhores ferramentas para o seu negócio crescer." />
+    <meta name="theme-color" content="#C6F058" />
+    <link rel="canonical" href="https://mktplay.com.br/" />
 
-    <!-- Performance: Preconnect OBRIGATÓRIOS segundo o relatório -->
-    <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
-    <link rel="preconnect" href="https://qrklcww2.api.sanity.io" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Open Graph / Facebook / WhatsApp -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://agropecuariabrasil.com.br/" />
-    <meta property="og:title" content="Agropecuária Brasil | Cuidar bem é da nossa natureza" />
-    <meta property="og:description" content="Encontre tudo para seu pet e sua produção rural. Rações, medicamentos e acessórios com entrega rápida em São Carlos." />
-    
-    <!-- IMAGEM DE COMPARTILHAMENTO (WHATSAPP) -->
-    <!-- Deixamos vazio intencionalmente para remover a imagem antiga. O componente SEOManager.tsx preencherá isso com o Logo do site automaticamente. -->
+    <meta property="og:url" content="https://mktplay.com.br/" />
+    <meta property="og:title" content="MKT&Play | Consultores-Curadores de Marketing Digital" />
+    <meta property="og:description" content="Com o método Plug and Play, simplificamos a gestão do seu marketing e conectamos as melhores ferramentas para o seu negócio crescer." />
     <meta property="og:image" content="" />
 
-    <!-- Título Otimizado para SEO -->
-    <title>Agropecuária Brasil | Pet Shop, Rações e Produtos Rurais em São Carlos</title>
-    
-    <!-- Google Fonts Otimizado (Swap para não bloquear renderização) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>MKT&amp;Play | Consultores-Curadores de Marketing Digital</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -41,65 +30,57 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif'],
                     },
                     colors: {
                         brand: {
-                            green: '#24902C',
-                            blue: '#264788',
-                            yellow: '#E5C808',
+                            lime:   '#C6F058',
+                            dark:   '#2A303C',
+                            darker: '#1E232B',
+                            gray:   '#F3F4F6',
                         }
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-8px)' },
+                        'fade-up': {
+                            '0%':   { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        'pulse-lime': {
+                            '0%, 100%': { boxShadow: '0 0 0 0 rgba(198,240,88,0.4)' },
+                            '50%':      { boxShadow: '0 0 0 12px rgba(198,240,88,0)' },
                         }
                     },
                     animation: {
-                        'float': 'float 3s ease-in-out infinite',
+                        'fade-up':    'fade-up 0.7s ease-out forwards',
+                        'pulse-lime': 'pulse-lime 2.5s ease-in-out infinite',
                     }
                 }
             }
         }
     </script>
-    
-    <!-- CSS CRÍTICO PARA EVITAR CLS -->
-    <style>
-        /* Define altura mínima para o Hero antes do JS carregar */
-        #home { min-height: 720px; }
-        @media (max-width: 768px) { #home { min-height: 100svh; } }
 
-        /* "Nuclear Option" para GTM clicks */
-        .click-fix > * { pointer-events: none !important; }
-        
-        /* CLS Fix Global: Imagens devem ter display block */
-        img {
-            font-size: 0;
-            display: block;
-            height: auto; 
-            max-width: 100%;
-        }
+    <!-- Critical CSS -->
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #1E232B; }
+        #inicio { min-height: 100svh; }
+        img { font-size: 0; display: block; height: auto; max-width: 100%; }
+        ::selection { background: #C6F058; color: #1E232B; }
     </style>
 
 <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.10.1",
-    "@sanity/client": "https://esm.sh/@sanity/client@^7.13.2",
-    "vite": "https://esm.sh/vite@^7.2.7",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
-    "sanity/": "https://esm.sh/sanity@^4.21.1/",
-    "sanity": "https://esm.sh/sanity@^4.21.1"
+    "react":             "https://esm.sh/react@^19.2.3",
+    "react-dom/":        "https://esm.sh/react-dom@^19.2.3/",
+    "react/":            "https://esm.sh/react@^19.2.3/",
+    "lucide-react":      "https://esm.sh/lucide-react@^0.561.0",
+    "framer-motion":     "https://esm.sh/framer-motion@^11.0.0?deps=react@19.2.3",
+    "framer-motion/":    "https://esm.sh/framer-motion@^11.0.0/"
   }
 }
 </script>
 </head>
-<body class="bg-gray-50 text-gray-900 selection:bg-[#E5C808] selection:text-[#264788]">
+<body class="bg-brand-darker text-brand-gray font-sans">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 </body>
